@@ -1,0 +1,11 @@
+.heroContainer {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+}
+
+.heroLogo {
+    width: 50vw;
+}
