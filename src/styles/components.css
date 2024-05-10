@@ -71,7 +71,7 @@
 }
 
 .card--wrapper {
-    padding: 20px;
+    padding: 30px;
 }
 
 .card {
@@ -86,8 +86,11 @@
     font-weight: bold;
 }
 
+.card--info h3 {
+    font-family: Roboto;
+}
 .card--info span {
-    padding: 2px;
+    padding-bottom: 5px;
     font-family: Roboto;
     display: block;
 }

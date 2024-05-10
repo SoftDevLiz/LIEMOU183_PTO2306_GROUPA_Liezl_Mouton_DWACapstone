@@ -8,7 +8,7 @@ export default function Card() {
         <div className="card">
             <img className="card--image" src="./src/assets/podcastExample.png"/>
             <div className="card--info">
-                <span className="card--title">Ologies by Allie Ward</span>
+                <h3 className="card--title">Ologies by Allie Ward</h3>
                 <span>10 Seasons</span>
                 <span>Scientific</span>
             </div>
