@@ -66,9 +66,12 @@
   transform: translateY(2px);
 }
 
+.footer--heading {
+    font-family: Raleway;
+}
+
 .card--wrapper {
     padding: 20px;
-    font-family: Raleway;
 }
 
 .card {
@@ -79,6 +82,16 @@
     width: 100%;
 }
 
-.card--info {
+.card--title {
+    font-weight: bold;
+}
+
+.card--info span {
+    padding: 2px;
+    font-family: Roboto;
     display: block;
+}
+
+.card--description {
+    font-family: Roboto;
 }
