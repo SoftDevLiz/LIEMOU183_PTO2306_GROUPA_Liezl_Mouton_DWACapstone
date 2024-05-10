@@ -5,7 +5,12 @@ export default function App() {
   return (
     <>
     <Hero />
-      <Card />
+      <Card 
+        img=""
+        title=""
+        seasons=""
+        genres=""
+      />
     </>
   )
 }

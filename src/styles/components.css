@@ -2,7 +2,7 @@
     --primary-color: #E8241D;
 }
 
-.heroContainer {
+.hero {
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -10,17 +10,17 @@
     justify-content: center;
 }
 
-.heroLogo {
+.hero--logo {
     width: 500px;
 }
 
-.tagline {
+.hero--tagline {
     font-family: Raleway;
     color: #333;
     padding-bottom: 40px;
 }
 
-.loginBtn {
+.hero--button {
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #f6311b 0, #d61518 100%);
@@ -52,22 +52,23 @@
 }
 
 
-.loginBtn:focus {
+.hero--button:focus {
   box-shadow: #bb0000 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #bb0000 0 -3px 0 inset;
 }
 
-.loginBtn:hover {
+.hero--button:hover {
   box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #bb0000 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-.loginBtn:active {
+.hero--button:active {
   box-shadow: #bb0000 0 3px 7px inset;
   transform: translateY(2px);
 }
 
 .footer--heading {
     font-family: Raleway;
+    padding-bottom: 20px;
 }
 
 .card--wrapper {

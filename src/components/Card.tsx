@@ -6,7 +6,11 @@ export default function Card() {
         <div className="card--wrapper">
         <h1 className="footer--heading">Explore</h1>
         <div className="card">
-            <img className="card--image" src="./src/assets/podcastExample.png"/>
+            <img 
+                className="card--image" 
+                src="./src/assets/podcastExample.png" 
+                alt="Podcast thumbnail"
+            />
             <div className="card--info">
                 <h3 className="card--title">Ologies by Allie Ward</h3>
                 <span>10 Seasons</span>
