@@ -6,10 +6,11 @@ export default function App() {
     <>
     <Hero />
       <Card 
-        img=""
+        image=""
         title=""
         seasons=""
         genres=""
+        desc=""
       />
     </>
   )

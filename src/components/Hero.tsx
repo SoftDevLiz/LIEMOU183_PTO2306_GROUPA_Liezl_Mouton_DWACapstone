@@ -2,7 +2,7 @@ import "../styles/components.css";
 import { Button } from '@mui/base/Button';
 
 
-export default function Hero() {
+const Hero: React.FC<{}> = () => {
     return (
         <header>
             <div className="hero">
@@ -17,3 +17,5 @@ export default function Hero() {
         </header>
     )
 }
+
+export default Hero;
