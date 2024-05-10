@@ -8,7 +8,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid black;
 }
 
 .heroLogo {
@@ -65,4 +64,21 @@
 .loginBtn:active {
   box-shadow: #bb0000 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+.card--wrapper {
+    padding: 20px;
+    font-family: Raleway;
+}
+
+.card {
+    width: 200px;
+}
+
+.card--image {
+    width: 100%;
+}
+
+.card--info {
+    display: block;
 }
