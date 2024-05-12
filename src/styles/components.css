@@ -105,3 +105,11 @@
 .card--description {
     font-family: Roboto;
 }
+
+.modal--box {
+    position: fixed; 
+    width: 500px;
+    height: 500px; 
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.4); 
+}

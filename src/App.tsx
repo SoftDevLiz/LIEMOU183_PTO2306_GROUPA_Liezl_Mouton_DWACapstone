@@ -11,7 +11,6 @@ const App: React.FC<{}> = () => {
           const response = await fetch('https://podcast-api.netlify.app/shows');
           const jsonData = await response.json();
           setShowData(jsonData);
-          console.log(showData)
         } catch (error) {
           console.error('Error fetching data:', error)
         }

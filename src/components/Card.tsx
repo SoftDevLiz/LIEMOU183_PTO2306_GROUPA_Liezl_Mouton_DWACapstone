@@ -1,11 +1,11 @@
 import "../styles/components.css";
 
 interface CardProps {
-image: "",
-title: "", 
-seasons: "",
-genres: "",
-description: "",
+image: string,
+title: string, 
+seasons: number,
+genres: [],
+description: string,
 }
 
 const Card: React.FC<CardProps> = (props) => {
