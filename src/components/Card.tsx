@@ -1,10 +1,14 @@
 import "../styles/components.css";
 
 interface CardProps {
-
+image: "",
+title: "", 
+seasons: "",
+genres: "",
+description: "",
 }
 
-const Card: React.FC<CardProps> = () => {
+const Card: React.FC<CardProps> = (props) => {
     return (
      <footer>
         <div className="card--wrapper">
@@ -12,15 +16,15 @@ const Card: React.FC<CardProps> = () => {
         <div className="card">
             <img 
                 className="card--image" 
-                src="./src/assets/podcastExample.png" 
+                src={props.image}
                 alt="Podcast thumbnail"
             />
             <div className="card--info">
-                <h3 className="card--title">Ologies by Allie Ward</h3>
-                <span>10 Seasons</span>
-                <span>Scientific</span>
+                <h3 className="card--title">{props.title}</h3>
+                <span>{props.seasons} Seasons</span>
+                <span>{props.genres}</span>
             </div>
-            <p className="card--description">Ward interviews an expert from a distinct scientific field (somnology, bryology, philematology, etc.).</p>
+            <p className="card--description">{props.description}</p>
         </div>
         </div>
      </footer>
