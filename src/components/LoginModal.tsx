@@ -5,8 +5,10 @@ const LoginModal: React.FC<{}> = () => {
         <div className="modal--box">
             <div className="modal--content">
                 <h1 className="modal--header">Welcome back!</h1>
-                <form>
-                    
+                <form className="login--form">
+                    <input placeholder="Email"></input>
+                    <input placeholder="Password"></input>
+                    <input type="submit"></input>
                 </form>
             </div>
         </div>

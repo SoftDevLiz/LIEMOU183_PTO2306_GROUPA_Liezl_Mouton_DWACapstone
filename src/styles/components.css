@@ -116,8 +116,21 @@
     border: solid black;
 }
 
+.modal--header {
+    margin-bottom: 100px;
+}
+
 .modal--content {
     font-family: Archivo Black;
     margin: 20px;
     color: var(--primary-text);
+}
+
+.login--form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login--form input {
+    margin-bottom: 10px;
 }
