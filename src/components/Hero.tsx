@@ -5,7 +5,6 @@ import { useState } from "react"
 
 const Hero: React.FC<{}> = () => {
     const [modalToggle, setModalToggle] = useState(false)
-    console.log("comp rendered")
 
     const openModal = () => {
         setModalToggle(true);
