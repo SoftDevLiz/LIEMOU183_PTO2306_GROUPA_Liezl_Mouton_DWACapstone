@@ -19,21 +19,22 @@ const App: React.FC<{}> = () => {
       fetchData();
     }, [])
 
-    
-
   return (
     <>
       <Hero />
-      {showData.map((show: any) => (
-        <Card
-          key={show.id}
-          image={show.image} 
-          title={show.title}
-          seasons={show.seasons}
-          genres={show.genres}
-          description={show.description}
-        />
-      ))}
+      <h1 className="footer--heading">Explore</h1>
+      <footer className="footer">
+          {showData.map((show: any) => (
+            <Card
+              key={show.id}
+              image={show.image} 
+              title={show.title}
+              seasons={show.seasons}
+              genres={show.genres}
+              description={show.description}
+            />
+          ))}
+      </footer>
     </>
   )
 }

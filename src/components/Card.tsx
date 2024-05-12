@@ -9,10 +9,16 @@ description: "",
 }
 
 const Card: React.FC<CardProps> = (props) => {
+    const truncateDescription = (description: string, maxLength: number) => {
+        if (description.length <= maxLength) {
+            return description;
+        }
+        return description.substring(0, maxLength) + '...';
+    };
+
     return (
      <footer>
-        <div className="card--wrapper">
-        <h1 className="footer--heading">Explore</h1>
+        <div className="card--wrapper">  
         <div className="card">
             <img 
                 className="card--image" 
@@ -24,7 +30,7 @@ const Card: React.FC<CardProps> = (props) => {
                 <span>{props.seasons} Seasons</span>
                 <span>{props.genres}</span>
             </div>
-            <p className="card--description">{props.description}</p>
+            <p className="card--description">{truncateDescription(props.description, 150)}</p>
         </div>
         </div>
      </footer>
@@ -32,3 +38,4 @@ const Card: React.FC<CardProps> = (props) => {
 }
 
 export default Card;
+
