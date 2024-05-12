@@ -4,7 +4,7 @@ import Hero from "./components/Hero"
 
 const App: React.FC<{}> = () => {
   const [showData, setShowData] = useState<any>([]);
-  
+
     useEffect(() => {
       async function fetchData() {
         try {
@@ -19,18 +19,21 @@ const App: React.FC<{}> = () => {
       fetchData();
     }, [])
 
+    
+
   return (
     <>
       <Hero />
-      {showData.length > 0 && (
+      {showData.map((show: any) => (
         <Card
-        image={showData[0].image} 
-        title={showData[0].title}
-        seasons={showData[0].seasons}
-        genres={showData[0].genres}
-        description={showData[0].description}
+          key={show.id}
+          image={show.image} 
+          title={show.title}
+          seasons={show.seasons}
+          genres={show.genres}
+          description={show.description}
         />
-      )}
+      ))}
     </>
   )
 }
