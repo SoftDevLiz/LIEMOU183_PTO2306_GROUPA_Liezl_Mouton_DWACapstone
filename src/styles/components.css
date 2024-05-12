@@ -1,5 +1,6 @@
 :root {
     --primary-color: #E8241D;
+    --primary-text: #333333;
 }
 
 .hero {
@@ -108,8 +109,15 @@
 
 .modal--box {
     position: fixed; 
-    width: 500px;
-    height: 500px; 
+    width: 400px;
+    height: 400px; 
     border-radius: 10px;
-    background-color: rgba(0,0,0,0.4); 
+    background-color: white; 
+    border: solid black;
+}
+
+.modal--content {
+    font-family: Archivo Black;
+    margin: 20px;
+    color: var(--primary-text);
 }
