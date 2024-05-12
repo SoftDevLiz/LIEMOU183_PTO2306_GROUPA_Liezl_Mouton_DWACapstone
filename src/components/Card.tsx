@@ -1,6 +1,10 @@
 import "../styles/components.css";
 
-export default function Card() {
+interface CardProps {
+
+}
+
+const Card: React.FC<CardProps> = () => {
     return (
      <footer>
         <div className="card--wrapper">
@@ -22,3 +26,5 @@ export default function Card() {
      </footer>
     )
 }
+
+export default Card;
