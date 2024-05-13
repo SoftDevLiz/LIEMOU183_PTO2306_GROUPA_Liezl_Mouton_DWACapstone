@@ -1,14 +1,8 @@
 import "../styles/components.css";
-import LoginModal from "./LoginModal"
-import { useState } from "react"
-
+import Login from "./Login";
 
 const Hero: React.FC<{}> = () => {
-    const [modalToggle, setModalToggle] = useState(false)
 
-    const openModal = () => {
-        setModalToggle(true);
-    }
 
     return (
         <header>
@@ -19,13 +13,7 @@ const Hero: React.FC<{}> = () => {
                     alt="Podify logo"
                 />
                 <h1 className="hero--tagline">Discover, Listen, Connect</h1>
-                <button 
-                    className="hero--button"
-                    onClick={openModal}
-                >Login</button>
-                {modalToggle && (
-                    <LoginModal />
-                )}
+                <Login />
             </div>
         </header>
     )
