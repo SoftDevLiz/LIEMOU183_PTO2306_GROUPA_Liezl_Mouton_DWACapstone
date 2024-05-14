@@ -1,4 +1,5 @@
 import "../styles/components.css";
+import genreMap from "../utils/genreMap";
 
 interface CardProps {
 image: string;
@@ -16,6 +17,9 @@ const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description 
         return description.substring(0, maxLength) + '...';
     };
 
+    const genreTitles = genres.map(genreId => genreMap[genreId]);
+    console.log(genreTitles)
+
     return (
      <footer>
         <div className="card--wrapper">  
@@ -28,7 +32,7 @@ const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description 
             <div className="card--info">
                 <h3 className="card--title">{title}</h3>
                 <span>{seasons} Seasons</span>
-                <span>{genres.join(', ')}</span>
+                <span>{genreTitles.join(' ● ')}</span>
             </div>
             <p className="card--description">{truncateDescription(description, 150)}</p>
         </div>
