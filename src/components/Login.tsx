@@ -3,7 +3,7 @@ import { useState } from "react";
 import supabase from "../utils/supabaseConfig";
 
 const Login: React.FC<{}> = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
@@ -27,7 +27,7 @@ const Login: React.FC<{}> = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const email = event.currentTarget.email.value;
+        const email = (event.currentTarget.email as HTMLInputElement).value;
         handleLogin(email);
     }
 

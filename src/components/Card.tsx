@@ -4,7 +4,7 @@ interface CardProps {
 image: string;
 title: string; 
 seasons: number;
-genres: string[];
+genres: number[];
 description: string;
 }
 

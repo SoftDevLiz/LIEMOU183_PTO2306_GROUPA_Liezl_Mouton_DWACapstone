@@ -2,28 +2,41 @@ import { useEffect, useState } from "react";
 import Card from "./components/Card"
 import Hero from "./components/Hero"
 
-const App: React.FC<{}> = () => {
-  const [showData, setShowData] = useState<any>([]);
+interface Show {
+  id: string;
+  title: string;
+  description: string;
+  seasons: number;
+  image: string;
+  genres: number[];
+  updated: string;
+}
 
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          const response = await fetch('https://podcast-api.netlify.app/shows');
-          const jsonData = await response.json();
-          setShowData(jsonData);
-        } catch (error) {
-          console.error('Error fetching data:', error)
+const App: React.FC<{}> = () => {
+  const [showData, setShowData] = useState<Show[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('https://podcast-api.netlify.app/shows');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        const jsonData: Show[] = await response.json();
+        setShowData(jsonData);
+      } catch (error: any) {
+        console.error('Error fetching data:', error);
       }
-      fetchData();
-    }, [])
+    }
+    fetchData();
+  }, []);
 
   return (
     <>
       <Hero />
       <h1 className="footer--heading">Explore</h1>
       <footer className="footer">
-          {showData.map((show: any) => (
+          {showData.map((show: Show) => (
             <Card
               key={show.id}
               image={show.image} 
