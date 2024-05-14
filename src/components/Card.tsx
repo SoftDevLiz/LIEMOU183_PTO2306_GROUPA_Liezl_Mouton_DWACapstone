@@ -1,14 +1,14 @@
 import "../styles/components.css";
 
 interface CardProps {
-image: string,
-title: string, 
-seasons: number,
-genres: [],
-description: string,
+image: string;
+title: string; 
+seasons: number;
+genres: string[];
+description: string;
 }
 
-const Card: React.FC<CardProps> = (props) => {
+const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description }) => {
     const truncateDescription = (description: string, maxLength: number) => {
         if (description.length <= maxLength) {
             return description;
@@ -22,15 +22,15 @@ const Card: React.FC<CardProps> = (props) => {
         <div className="card">
             <img 
                 className="card--image" 
-                src={props.image}
+                src={image}
                 alt="Podcast thumbnail"
             />
             <div className="card--info">
-                <h3 className="card--title">{props.title}</h3>
-                <span>{props.seasons} Seasons</span>
-                <span>{props.genres}</span>
+                <h3 className="card--title">{title}</h3>
+                <span>{seasons} Seasons</span>
+                <span>{genres.join(', ')}</span>
             </div>
-            <p className="card--description">{truncateDescription(props.description, 150)}</p>
+            <p className="card--description">{truncateDescription(description, 150)}</p>
         </div>
         </div>
      </footer>
