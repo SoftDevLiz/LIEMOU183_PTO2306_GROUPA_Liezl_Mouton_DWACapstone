@@ -20,7 +20,7 @@ const Login: React.FC<{}> = () => {
             } else {
                 console.log('User signed in successfully:', response.data);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error signing in:', error.message);
         }
     }
