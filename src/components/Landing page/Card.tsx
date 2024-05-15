@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description 
                 <span>{seasons} Seasons</span>
                 <span>{genreTitles.join(' ● ')}</span>
             </div>
-            <p className="card--description">{truncateDescription(description, 150)}</p>
+            <p className="card--description">{truncateDescription(description, 100)}</p>
         </div>
         </div>
      </footer>

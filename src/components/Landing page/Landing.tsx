@@ -1,5 +1,5 @@
-import Hero from "../components/Landing page/Hero";
-import Card from "../components/Landing page/Card"
+import Hero from "./Hero";
+import Card from "./Card"
 import { useEffect, useState } from "react";
 
 interface Show {

@@ -1,5 +1,5 @@
-import Landing from "./pages/Landing";
-import Home from "./pages/Home";
+import Landing from "./components/Landing page/Landing";
+import Home from "./components/Home page/Home";
 
 
 const App: React.FC<{}> = () => {

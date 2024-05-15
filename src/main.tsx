@@ -1,8 +1,8 @@
 import React from "react";
 // import App from "./App";
-import Landing from "./pages/Landing";
-import Home from "./pages/Home";
-import Err404 from "./pages/Err404";
+import Landing from "./components/Landing page/Landing";
+import Home from "./components/Home page/Home";
+import Err404 from "./components/Error page/Err404";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 

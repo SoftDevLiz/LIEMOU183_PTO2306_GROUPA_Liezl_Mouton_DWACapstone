@@ -1,6 +1,6 @@
-import Header from "../components/Home page/Header";
-import Navbar from "../components/Home page/Navbar";
-import ShowList from "../components/Home page/ShowList";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import ShowList from "./ShowList";
 
 
 
