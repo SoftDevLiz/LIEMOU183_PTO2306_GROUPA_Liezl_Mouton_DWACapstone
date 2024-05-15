@@ -1,6 +1,6 @@
 import "../../styles/components.css"
 import { useEffect, useState } from "react";
-import Card from "../Landing page/Card";
+import Card from "../landing page/Card";
 
 interface Show {
     id: string;

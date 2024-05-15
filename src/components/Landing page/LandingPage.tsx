@@ -13,7 +13,7 @@ interface Show {
   }
 
 
-const Landing: React.FC<{}> = () => {
+const LandingPage: React.FC<{}> = () => {
     const [showData, setShowData] = useState<Show[]>([]);
 
     useEffect(() => {
@@ -52,4 +52,4 @@ const Landing: React.FC<{}> = () => {
     );
 }
 
-export default Landing;
+export default LandingPage;

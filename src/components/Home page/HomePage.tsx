@@ -2,10 +2,7 @@ import Header from "./Header";
 import Navbar from "./Navbar";
 import ShowList from "./ShowList";
 
-
-
-
-const Home: React.FC<{}> = () => {
+const HomePage: React.FC<{}> = () => {
     
 
     return (
@@ -17,4 +14,4 @@ const Home: React.FC<{}> = () => {
     )
 }
 
-export default Home;
+export default HomePage;

@@ -1,20 +1,21 @@
 import React from "react";
 // import App from "./App";
-import Landing from "./components/Landing page/Landing";
-import Home from "./components/Home page/Home";
-import Err404 from "./components/Error page/Err404";
+import LandingPage from "./components/landing page/LandingPage";
+import HomePage from "./components/home page/HomePage";
+import Err404Page from "./components/error page/Err404Page";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+
 const router = createBrowserRouter([{
   path: '/',
-  element: <Landing />,
-  errorElement: <Err404 />
+  element: <LandingPage />,
+  errorElement: <Err404Page />
 }, 
 {
   path: '/Home',
-  element: <Home />,
-  errorElement: <Err404 />
+  element: <HomePage />,
+  errorElement: <Err404Page />
 }
 ]);
 
