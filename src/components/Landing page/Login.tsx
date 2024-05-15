@@ -1,6 +1,6 @@
 import "../styles/components.css";
 import { useState } from "react";
-import supabase from "../utils/supabaseConfig";
+import supabase from "../../utils/supabaseConfig";
 
 const Login: React.FC<{}> = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-import Hero from "../components/Hero";
+import Hero from "../components/Landing page/Hero";
 import Card from "../components/Card";
 import { useEffect, useState } from "react";
 
