@@ -9,7 +9,7 @@ genres: number[];
 description: string;
 }
 
-const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description }) => {
+const StaticPreviewCard: React.FC<CardProps> = ({ image, title, seasons, genres, description }) => {
     const truncateDescription = (description: string, maxLength: number) => {
         if (description.length <= maxLength) {
             return description;
@@ -18,7 +18,6 @@ const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description 
     };
 
     const genreTitles = genres.map(genreId => genreMap[genreId]);
-    console.log(genreTitles)
 
     return (
      <footer>
@@ -41,5 +40,5 @@ const Card: React.FC<CardProps> = ({ image, title, seasons, genres, description 
     )
 }
 
-export default Card;
+export default StaticPreviewCard;
 

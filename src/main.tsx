@@ -1,5 +1,4 @@
 import React from "react";
-// import App from "./App";
 import LandingPage from "./components/landing page/LandingPage";
 import HomePage from "./components/home page/HomePage";
 import Err404Page from "./components/error page/Err404Page";

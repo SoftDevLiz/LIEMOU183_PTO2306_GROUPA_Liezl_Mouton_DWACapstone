@@ -1,5 +1,5 @@
 import Hero from "./Hero";
-import Card from "./Card"
+import StaticPreviewCard from "./StaticPreviewCard"
 import { useEffect, useState } from "react";
 
 interface Show {
@@ -38,7 +38,7 @@ const LandingPage: React.FC<{}> = () => {
             <h1 className="footer--heading">Explore</h1>
             <footer className="footer">
                 {showData.map((show: Show) => (
-                    <Card
+                    <StaticPreviewCard
                     key={show.id}
                     image={show.image} 
                     title={show.title}

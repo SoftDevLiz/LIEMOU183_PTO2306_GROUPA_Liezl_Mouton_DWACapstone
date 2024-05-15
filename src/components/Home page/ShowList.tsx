@@ -1,6 +1,6 @@
 import "../../styles/components.css"
 import { useEffect, useState } from "react";
-import Card from "../landing page/Card";
+import ShowListCard from "./ShowListCard";
 
 interface Show {
     id: string;
@@ -35,7 +35,7 @@ const ShowList: React.FC<{}> = () => {
         <>
         <div className="showlist--wrapper">
         {showData.map((show: Show) => (
-            <Card
+            <ShowListCard
             key={show.id}
             image={show.image} 
             title={show.title}

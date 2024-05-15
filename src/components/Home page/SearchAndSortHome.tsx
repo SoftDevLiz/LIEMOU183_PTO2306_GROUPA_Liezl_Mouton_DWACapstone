@@ -8,7 +8,7 @@ const SearchAndSortHome: React.FC<{}> = () => {
                 placeholder="Search"
             />
             <select>
-                <option value="" disabled selected>Filter by</option>
+                <option value="">Filter by</option>
                 <option value="asc">Most recent</option>
                 <option value="desc">Oldest</option>
                 <option value="asc">A-Z</option>
