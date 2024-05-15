@@ -45,9 +45,9 @@ const Login: React.FC<{}> = () => {
                         <h1 className="modal--header">Welcome back!</h1>
                         <form className="login--form" onSubmit={handleSubmit}>
                             <input name="email" placeholder="Email"></input>
-                            <input type="submit">
-                            </input>
+                            <input type="submit"></input>
                         </form>
+                        <p>Podify uses magic to login. Check your email.</p>
                     </div>
                 </div>
             )}

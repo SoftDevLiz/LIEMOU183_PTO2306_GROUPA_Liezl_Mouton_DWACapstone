@@ -2,18 +2,19 @@ import React from "react";
 // import App from "./App";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
+import Err404 from "./pages/Err404";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([{
   path: '/',
   element: <Landing />,
-  errorElement: 
+  errorElement: <Err404 />
 }, 
 {
   path: '/Home',
   element: <Home />,
-  errorElement: <h1>404 not found</h1>
+  errorElement: <Err404 />
 }
 ]);
 
