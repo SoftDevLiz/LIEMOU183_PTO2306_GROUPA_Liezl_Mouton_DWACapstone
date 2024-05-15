@@ -15,7 +15,7 @@ const Login: React.FC<{}> = () => {
                 email: email,
                 options: {
                     shouldCreateUser: true,
-                    emailRedirectTo: '/home',
+                    emailRedirectTo: 'http://localhost:5173/Home',
                   },
             });
 

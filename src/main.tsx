@@ -1,13 +1,21 @@
 import React from "react";
-import App from "./App";
+// import App from "./App";
+import Landing from "./pages/Landing";
+import Home from "./pages/Home";
 import { createRoot } from "react-dom/client";
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// const router = createBrowserRouter([{
-//   path: '/',
-//   element: <App />,
-//   errorElement: <h1>404 not found</h1>
-// }]);
+const router = createBrowserRouter([{
+  path: '/',
+  element: <Landing />,
+  errorElement: 
+}, 
+{
+  path: '/Home',
+  element: <Home />,
+  errorElement: <h1>404 not found</h1>
+}
+]);
 
 // Type 'any' to avoid TS error
 const container: any = document.getElementById("root");
@@ -19,6 +27,6 @@ const root = createRoot(container);
  */
 root.render(
   <React.StrictMode>
-    <App /> 
+   <RouterProvider router={router} />
   </React.StrictMode>
 );
