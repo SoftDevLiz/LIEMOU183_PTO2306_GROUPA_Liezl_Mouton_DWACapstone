@@ -147,3 +147,26 @@
 .login--form input {
     margin-bottom: 10px;
 }
+
+.loggedIn--header {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.loggedIn--header img {
+    height: 50px;
+}
+
+.loggedIn--header button {
+    background-image: url(/src/assets/user.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: white;
+    height: 30px;
+    width: 30px; 
+}
