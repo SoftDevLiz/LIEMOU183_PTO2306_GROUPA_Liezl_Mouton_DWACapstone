@@ -1,4 +1,4 @@
-import "../styles/components.css";
+import "../../styles/components.css";
 import { useState } from "react";
 import supabase from "../../utils/supabaseConfig";
 

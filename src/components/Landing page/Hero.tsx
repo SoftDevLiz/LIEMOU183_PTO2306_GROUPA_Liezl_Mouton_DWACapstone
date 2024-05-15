@@ -1,4 +1,4 @@
-import "../styles/components.css";
+import "../../styles/components.css";
 import Login from "./Login";
 
 const Hero: React.FC<{}> = () => {

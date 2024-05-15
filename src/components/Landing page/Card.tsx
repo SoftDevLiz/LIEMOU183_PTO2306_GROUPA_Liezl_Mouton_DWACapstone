@@ -1,5 +1,5 @@
-import "../styles/components.css";
-import genreMap from "../utils/genreMap";
+import "../../styles/components.css"
+import genreMap from "../../utils/genreMap"
 
 interface CardProps {
 image: string;
