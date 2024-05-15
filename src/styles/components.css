@@ -181,3 +181,7 @@
     font-size: 40px;
     font-weight: 800;
 }
+
+.showlist {
+    border: 1px solid black;
+}
