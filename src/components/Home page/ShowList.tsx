@@ -33,6 +33,7 @@ const ShowList: React.FC<{}> = () => {
 
     return (
         <>
+        <div className="showlist--wrapper">
         {showData.map((show: Show) => (
             <Card
             key={show.id}
@@ -43,6 +44,7 @@ const ShowList: React.FC<{}> = () => {
             description={show.description}
             />
         ))}
+        </div>
         </>
     )
 }

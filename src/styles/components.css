@@ -84,7 +84,10 @@
 
 .card {
     width: 200px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
 }
+
 
 .card--image {
     width: 100%;
@@ -175,6 +178,7 @@
     font-family: Raleway;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 20px;
 }
 
 .navbar--title {
@@ -182,6 +186,8 @@
     font-weight: 800;
 }
 
-.showlist {
-    border: 1px solid black;
+.showlist--wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px
 }

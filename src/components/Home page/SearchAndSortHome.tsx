@@ -1,3 +1,5 @@
+import "../../styles/components.css"
+
 const SearchAndSortHome: React.FC<{}> = () => {
     return (
         <form className="search--wrapper">
