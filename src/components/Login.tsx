@@ -12,7 +12,11 @@ const Login: React.FC<{}> = () => {
     const handleLogin = async (email: string) => {
         try {
             const response = await supabase.auth.signInWithOtp({
-                email: email
+                email: email,
+                options: {
+                    shouldCreateUser: true,
+                    emailRedirectTo: '/home',
+                  },
             });
 
             if (response.error) {
@@ -41,7 +45,8 @@ const Login: React.FC<{}> = () => {
                         <h1 className="modal--header">Welcome back!</h1>
                         <form className="login--form" onSubmit={handleSubmit}>
                             <input name="email" placeholder="Email"></input>
-                            <input type="submit"></input>
+                            <input type="submit">
+                            </input>
                         </form>
                     </div>
                 </div>

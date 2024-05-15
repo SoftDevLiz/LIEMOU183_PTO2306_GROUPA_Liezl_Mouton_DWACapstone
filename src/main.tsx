@@ -1,6 +1,13 @@
 import React from "react";
 import App from "./App";
 import { createRoot } from "react-dom/client";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// const router = createBrowserRouter([{
+//   path: '/',
+//   element: <App />,
+//   errorElement: <h1>404 not found</h1>
+// }]);
 
 // Type 'any' to avoid TS error
 const container: any = document.getElementById("root");
@@ -12,6 +19,6 @@ const root = createRoot(container);
  */
 root.render(
   <React.StrictMode>
-    <App />
+    <App /> 
   </React.StrictMode>
 );
