@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Navbar from "./Navbar";
-import ShowList from "./ShowList";
+import ShowDashboard from "./ShowDashboard";
 
 const HomePage: React.FC<{}> = () => {
     
@@ -9,7 +9,7 @@ const HomePage: React.FC<{}> = () => {
         <>
         <Header />
         <Navbar />
-        <ShowList />
+        <ShowDashboard />
         </>
     )
 }

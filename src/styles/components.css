@@ -206,3 +206,14 @@
     position: absolute;
     right: 2%;
 }
+
+.search--wrapper {
+    margin-left: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search--bar {
+    margin-right: 20px;
+}
