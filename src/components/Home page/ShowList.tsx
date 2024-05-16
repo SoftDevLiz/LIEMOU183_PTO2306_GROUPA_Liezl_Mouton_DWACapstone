@@ -1,4 +1,3 @@
-import React from 'react';
 import ShowListCard from './ShowListCard';
 import "../../styles/components.css";
 
