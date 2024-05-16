@@ -16,6 +16,8 @@ const Header: React.FC<{}> = () => {
         </header>
         {isOpen && (
             <div className="user--menu">
+                <h1>Favourites Library</h1>
+                <h1>Clear history</h1>
             </div>
         )}
         </>
