@@ -19,12 +19,8 @@ interface CardProps {
 
         const genreTitles = genres.map(genreId => genreMap[genreId]);
 
-        const click = () => {
-            console.log(`card clicked`)
-        }
-
         return (
-            <div className="card--wrapper" onClick={click}>  
+            <div className="card--wrapper">  
             <div className="card">
             <img 
                 className="card--image" 

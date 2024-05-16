@@ -1,7 +1,7 @@
 import Hero from "./Hero";
 import StaticPreviewCard from "./StaticPreviewCard"
 import { useState } from "react";
-import fetchData from "../../utils/fetchData";
+import fetchPreviewData from "../../utils/fetchPreviewData";
 
 interface Show {
     id: string;
@@ -17,7 +17,7 @@ interface Show {
 const LandingPage: React.FC<{}> = () => {
     const [showData, setShowData] = useState<Show[]>([]);
 
-    fetchData(setShowData);
+    fetchPreviewData(setShowData);
 
     return (
         <>

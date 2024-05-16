@@ -2,6 +2,7 @@ import React from "react";
 import LandingPage from "./components/landing page/LandingPage";
 import HomePage from "./components/home page/HomePage";
 import Err404Page from "./components/error page/Err404Page";
+import SingleShowPage from "./components/single show page/SingleShowPage";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -12,8 +13,13 @@ const router = createBrowserRouter([{
   errorElement: <Err404Page />
 }, 
 {
-  path: '/Home',
+  path: '/home',
   element: <HomePage />,
+  errorElement: <Err404Page />
+},
+{
+  path: '/show/:showID',
+  element: <SingleShowPage />,
   errorElement: <Err404Page />
 }
 ]);

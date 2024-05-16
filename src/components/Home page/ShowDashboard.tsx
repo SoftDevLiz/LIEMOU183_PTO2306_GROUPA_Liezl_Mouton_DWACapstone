@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ShowList from './ShowList';
 import SearchAndSortHome from './SearchAndSortHome';
-import fetchData from '../../utils/fetchData';
+import fetchPreviewData from '../../utils/fetchPreviewData';
 import "../../styles/components.css";
 
 interface Show {
@@ -19,7 +19,7 @@ const ShowContainer: React.FC<{}> = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortCriteria, setSortCriteria] = useState<string>('');
 
-  fetchData(setShowData)
+  fetchPreviewData(setShowData)
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
