@@ -2,6 +2,8 @@ import "../../styles/components.css"
 import genreMap from "../../utils/genreMap"
 
 interface CardProps {
+    id: string;
+    key: string;
     image: string;
     title: string; 
     seasons: number;
@@ -9,7 +11,7 @@ interface CardProps {
     description: string;
     }
 
-    const ShowListCard: React.FC<CardProps> = ({ image, title, seasons, genres, description }) => {
+    const ShowListCard: React.FC<CardProps> = ({ id, image, title, seasons, genres, description }) => {
         const truncateDescription = (description: string, maxLength: number) => {
             if (description.length <= maxLength) {
                 return description;
@@ -21,7 +23,7 @@ interface CardProps {
 
         return (
             <div className="card--wrapper">  
-            <div className="card">
+            <div className="card" data-showid={id}>
             <img 
                 className="card--image" 
                 src={image}
@@ -39,3 +41,4 @@ interface CardProps {
     }
 
     export default ShowListCard;
+

@@ -21,6 +21,7 @@ const ShowList: React.FC<ShowListProps> = ({ shows }) => {
       {shows.map((show: Show) => (
         <ShowListCard
           key={show.id}
+          id={show.id}
           image={show.image}
           title={show.title}
           seasons={show.seasons}
