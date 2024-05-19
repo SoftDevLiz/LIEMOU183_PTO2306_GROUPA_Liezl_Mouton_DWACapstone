@@ -1,5 +1,6 @@
 import "../../styles/components.css"
 import genreMap from "../../utils/genreMap"
+import { useNavigate } from "react-router-dom"
 
 interface CardProps {
     id: string;
@@ -12,6 +13,12 @@ interface CardProps {
     }
 
     const ShowListCard: React.FC<CardProps> = ({ id, image, title, seasons, genres, description }) => {
+        const navigate = useNavigate()
+
+        const handleClick = () => {
+            navigate(`/show/${id}`);
+        } 
+        
         const truncateDescription = (description: string, maxLength: number) => {
             if (description.length <= maxLength) {
                 return description;
@@ -19,11 +26,11 @@ interface CardProps {
             return description.substring(0, maxLength) + '...';
         };
 
-        const genreTitles = genres.map(genreId => genreMap[genreId]);
+        const genreTitles = genres.map(genreId => genreMap[genreId]);  
 
         return (
             <div className="card--wrapper">  
-            <div className="card" data-showid={id}>
+            <div className="card" data-showid={id} onClick={handleClick}>
             <img 
                 className="card--image" 
                 src={image}

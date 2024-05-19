@@ -15,7 +15,7 @@ const fetchSingleShowData = (showID: any, setState: any) => {
           }
         }
         fetchData();
-      }, []);
+      }, [showID]);
 }
 
 export default fetchSingleShowData;
