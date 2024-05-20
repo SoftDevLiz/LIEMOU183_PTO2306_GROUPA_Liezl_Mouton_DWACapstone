@@ -2,6 +2,7 @@ import "../../styles/components.css"
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
+import ShareButton from "./ShareButton";
 
 interface Data {
     id: string;
@@ -40,14 +41,21 @@ const ShowDetailsPage: React.FC<{}> = () => {
       }
 
     return (
-        <div>
+        <>
           <Header />
-            <h1>{showData.title}</h1>
-            <img src={showData.image} alt={showData.title} />
-            <p>{showData.description}</p>
-            <span>seasons</span>
-            <span>genres</span>
-        </div>
+            <div className="show--wrapper">
+              <div className="show--title--wrapper">
+                <h1>{showData.title}</h1>
+                <ShareButton />
+              </div>  
+                <h2>Seasons</h2>
+                <h2>Genres</h2>
+                <h2>Last updated</h2>
+                <img src={showData.image} alt={showData.title} />
+                <h2>Description</h2>
+                <p className="show--desc">{showData.description}</p>
+              </div>
+        </>
     ) 
 }
 
