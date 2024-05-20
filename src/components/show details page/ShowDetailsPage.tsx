@@ -1,7 +1,7 @@
 import "../../styles/components.css"
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import genreMap from "../../utils/genreMap";
+import Header from "./Header";
 
 interface Data {
     id: string;
@@ -41,6 +41,7 @@ const ShowDetailsPage: React.FC<{}> = () => {
 
     return (
         <div>
+          <Header />
             <h1>{showData.title}</h1>
             <img src={showData.image} alt={showData.title} />
             <p>{showData.description}</p>

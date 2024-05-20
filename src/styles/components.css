@@ -217,3 +217,32 @@
 .search--bar {
     margin-right: 20px;
 }
+
+.headerWithBack {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.headerWithBack--back {
+    background-image: url(/src/assets/left-arrows.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: white;
+    height: 30px;
+    width: 30px; 
+}
+
+.headerWithBack--account {
+    background-image: url(/src/assets/user.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: white;
+    height: 30px;
+    width: 30px; 
+}
