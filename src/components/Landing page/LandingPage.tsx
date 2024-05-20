@@ -1,7 +1,6 @@
 import Hero from "./Hero";
 import StaticPreviewCard from "./StaticPreviewCard"
-import { useState } from "react";
-import fetchPreviewData from "../../utils/fetchPreviewData";
+import { useState, useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -20,7 +19,21 @@ interface Show {
 const LandingPage: React.FC<{}> = () => {
     const [showData, setShowData] = useState<Show[]>([]);
 
-    fetchPreviewData(setShowData);
+        useEffect(() => {
+            async function fetchData() {
+              try {
+                const response = await fetch('https://podcast-api.netlify.app/shows');
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                const jsonData = await response.json();
+                setShowData(jsonData);
+              } catch (error: any) {
+                console.error('Error fetching data:', error);
+              }
+            }
+            fetchData();
+          }, []);
 
     const settings = {
         infinite: true,
