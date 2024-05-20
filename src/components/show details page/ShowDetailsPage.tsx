@@ -34,8 +34,6 @@ const ShowDetailsPage: React.FC<{}> = () => {
         fetchData();
       }, [id]);
 
-      console.log(showData)
-
       if (!showData) {
         return <div>Loading...</div>
       }
@@ -49,7 +47,7 @@ const ShowDetailsPage: React.FC<{}> = () => {
                 <ShareButton />
               </div>  
                 <h2>Seasons</h2>
-                <h2>Genres</h2>
+                <h2>{showData.genres.join(' ● ')}</h2>
                 <h2>Last updated</h2>
                 <img src={showData.image} alt={showData.title} />
                 <h2>Description</h2>
