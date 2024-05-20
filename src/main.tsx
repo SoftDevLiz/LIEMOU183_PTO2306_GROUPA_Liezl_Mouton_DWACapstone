@@ -6,7 +6,6 @@ import ShowDetailsPage from "./components/show details page/ShowDetailsPage";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-
 const router = createBrowserRouter([{
   path: '/',
   element: <LandingPage />,

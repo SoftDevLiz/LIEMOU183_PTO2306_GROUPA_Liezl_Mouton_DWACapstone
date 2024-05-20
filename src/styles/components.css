@@ -67,12 +67,9 @@
   transform: translateY(2px);
 }
 
-.footer {
-    display: flex;
-}
-
 .footer--heading {
     font-family: Raleway;
+    margin-left: 20px;
     padding-bottom: 20px;
 }
 

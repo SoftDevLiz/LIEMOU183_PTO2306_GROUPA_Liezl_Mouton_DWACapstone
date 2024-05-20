@@ -6,7 +6,6 @@ const ShareButton: React.FC<{}> = () => {
         <>
         <button className="share--button"></button>
         </>
-
     )
 }
 
