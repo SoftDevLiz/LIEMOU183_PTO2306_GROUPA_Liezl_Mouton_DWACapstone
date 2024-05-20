@@ -38,6 +38,8 @@ const ShowDetailsPage: React.FC<{}> = () => {
         return <div>Loading...</div>
       }
 
+      const updated = new Date(showData.updated)
+
     return (
         <>
           <Header />
@@ -46,9 +48,9 @@ const ShowDetailsPage: React.FC<{}> = () => {
                 <h1>{showData.title}</h1>
                 <ShareButton />
               </div>  
-                <h2>Seasons</h2>
+                <h2>{showData.seasons.length} Seasons</h2>
                 <h2>{showData.genres.join(' ● ')}</h2>
-                <h2>Last updated</h2>
+                <h2>Last updated {updated.toLocaleDateString('en-US')}</h2>
                 <img src={showData.image} alt={showData.title} />
                 <h2>Description</h2>
                 <p className="show--desc">{showData.description}</p>
