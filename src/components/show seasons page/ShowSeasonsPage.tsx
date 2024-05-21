@@ -3,22 +3,23 @@ import Header from "../show details page/Header";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-interface Data {
-    id: string;
-    title: string;
-    description: string;
-    seasons: any[];
-    image: string;
-    genres: string[];
-    updated: string;
-}
-
-interface Seasons {
+interface Season {
   season: number;
   title: string;
   image: string;
   episodes: any[];
 }
+
+interface Data {
+    id: string;
+    title: string;
+    description: string;
+    seasons: Season[];
+    image: string;
+    genres: string[];
+    updated: string;
+}
+
 
 
 const ShowSeasonsPage: React.FC = () => {
