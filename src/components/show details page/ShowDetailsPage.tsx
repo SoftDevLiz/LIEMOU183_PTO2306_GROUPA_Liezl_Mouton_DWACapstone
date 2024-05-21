@@ -1,6 +1,6 @@
 import "../../styles/components.css"
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
 import ShareButton from "./ShareButton";
 
@@ -43,7 +43,7 @@ const ShowDetailsPage: React.FC<{}> = () => {
     return (
         <>
           <Header />
-            <div className="show--wrapper">
+            <div className="show--wrapper" >
               <div className="show--title--wrapper">
                 <h1>{showData.title}</h1>
                 <ShareButton />
@@ -53,7 +53,7 @@ const ShowDetailsPage: React.FC<{}> = () => {
                 <img src={showData.image} alt={showData.title}/>
               </div>
                 <h2>Last updated {updated.toLocaleDateString('en-US')}</h2>
-                <h2>{showData.seasons.length} Seasons</h2>
+                <Link to={'/show/:id/seasons'}>View all {showData.seasons.length} seasons</Link>
                 <h2>Description</h2>
                 <p className="show--desc">{showData.description}</p>
               </div>

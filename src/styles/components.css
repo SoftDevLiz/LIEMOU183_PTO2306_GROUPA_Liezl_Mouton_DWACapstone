@@ -283,6 +283,10 @@ body {
     text-align: center;
 }
 
+.show--hero h2 {
+    padding-bottom: 12px;
+}
+
 .show--hero img {
     width: 300px;
     display: block; /* Ensure the image is a block element */
