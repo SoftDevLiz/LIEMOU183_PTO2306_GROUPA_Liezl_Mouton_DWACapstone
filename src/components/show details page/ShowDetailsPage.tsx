@@ -53,7 +53,7 @@ const ShowDetailsPage: React.FC<{}> = () => {
                 <img src={showData.image} alt={showData.title}/>
               </div>
                 <h2>Last updated {updated.toLocaleDateString('en-US')}</h2>
-                <Link to={'/show/:id/seasons'}>View all {showData.seasons.length} seasons</Link>
+                <Link to={`/show/${id}/seasons`}>View all {showData.seasons.length} seasons</Link>
                 <h2>Description</h2>
                 <p className="show--desc">{showData.description}</p>
               </div>
