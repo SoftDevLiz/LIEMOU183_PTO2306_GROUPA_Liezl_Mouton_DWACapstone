@@ -1,7 +1,6 @@
-import React from 'react';
+import "../styles/components.css"
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import "../../styles/components.css";
 
 interface GlobalAudioPlayerProps {
   src: string;
@@ -12,8 +11,7 @@ const GlobalAudioPlayer: React.FC<GlobalAudioPlayerProps> = ({ src }) => {
     <div className="global-audio-player">
       <AudioPlayer
         src={src}
-        controls
-        layout="horizontal-reverse"
+        layout="stacked-reverse"
         customAdditionalControls={[]}
         customVolumeControls={[]}
         showJumpControls={false}

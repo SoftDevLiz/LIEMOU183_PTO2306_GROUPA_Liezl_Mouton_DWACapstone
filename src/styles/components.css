@@ -323,8 +323,9 @@ body {
 .global-audio-player {
     position: fixed;
     bottom: 0;
+    left: 0; 
     width: 100%;
-    background-color: #fff;
+    max-width: 100%;
     z-index: 1000;
   }
   

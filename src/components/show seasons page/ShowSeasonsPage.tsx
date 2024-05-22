@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react';
 import "../../styles/components.css";
 import Header from "../show details page/Header";
-import EpisodeCard from "./EpisodeCard"; 
+import EpisodeCard from "./EpisodeCard";
+import GlobalAudioPlayer from "../../utils/GlobalAudioPlayer"
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 interface Episode {
   title: string;
@@ -32,7 +33,7 @@ const ShowSeasonsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [showData, setShowData] = useState<Data | null>(null);
   const [selectedSeason, setSelectedSeason] = useState<number | null>(null);
-  const [seasonEpisodes, setSeasonEpisodes] = useState<Episode[]>([]);
+  const [currentEpisode, setCurrentEpisode] = useState<Episode | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -50,20 +51,17 @@ const ShowSeasonsPage: React.FC = () => {
     fetchData();
   }, [id]);
 
-  useEffect(() => {
-    if (selectedSeason !== null && showData) {
-      const selectedSeasonData = showData.seasons.find(season => season.season === selectedSeason);
-      setSeasonEpisodes(selectedSeasonData ? selectedSeasonData.episodes : []);
-    }
-  }, [selectedSeason, showData]);
+  const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedSeason(Number(event.target.value));
+  };
+
+  const handlePlayEpisode = (episode: Episode) => {
+    setCurrentEpisode(episode);
+  };
 
   if (!showData) {
     return <div>Loading...</div>;
   }
-
-  const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSeason(Number(event.target.value));
-  };
 
   const selectedSeasonData = showData.seasons.find(season => season.season === selectedSeason);
 
@@ -88,10 +86,11 @@ const ShowSeasonsPage: React.FC = () => {
         </div>
       )}
       <div className="episodes--list">
-        {seasonEpisodes.map((episode) => (
-          <EpisodeCard key={episode.episode} episode={episode} />
+        {selectedSeasonData && selectedSeasonData.episodes.map((episode) => (
+          <EpisodeCard key={episode.episode} episode={episode} onPlay={handlePlayEpisode} />
         ))}
       </div>
+      {currentEpisode && <GlobalAudioPlayer src={currentEpisode.file} />}
     </div>
   );
 };
