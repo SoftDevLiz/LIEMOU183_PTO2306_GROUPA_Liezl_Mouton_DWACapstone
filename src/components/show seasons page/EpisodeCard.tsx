@@ -1,23 +1,25 @@
-import "../../styles/components.css"
+import "../../styles/components.css";
 
-    const EpisodeCard: React.FC<{}> = () => {
+interface Episode {
+  title: string;
+  description: string;
+  episode: number;
+  file: string;
+}
 
-        return (
-            <div className="card--wrapper">  
-            <img 
-                className="card--image" 
-                src={image}
-                alt="Podcast thumbnail"
-            />
-            <div className="card--info">
-                <h3 className="card--title">{title}</h3>
-                <span>{seasons} Seasons</span>
-                <span>{genreTitles.join(' ● ')}</span>
-            </div>
-            <p className="card--description">{truncateDescription(description, 100)}</p>
-        </div>
-        )
-    }
+interface EpisodeCardProps {
+  episode: Episode;
+}
 
-    export default EpisodeCard;
+const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode }) => {
+  return (
+    <div className="card--wrapper">
+      <div className="card--info">
+        <h3 className="card--title">Episode {episode.episode}: {episode.title}</h3>
+        <p className="card--description">{episode.description}</p>
+      </div>
+    </div>
+  );
+};
 
+export default EpisodeCard;
