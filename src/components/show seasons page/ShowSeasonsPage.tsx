@@ -1,13 +1,21 @@
 import "../../styles/components.css"
 import Header from "../show details page/Header";
+import EpisodeCard from "./EpisodeCard";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+
+interface Episode {
+  title: string,
+  description: string,
+  episode: number,
+  file: string,
+}
 
 interface Season {
   season: number;
   title: string;
   image: string;
-  episodes: any[];
+  episodes: Episode[];
 }
 
 interface Data {
@@ -25,6 +33,7 @@ interface Data {
 const ShowSeasonsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [showData, setShowData] = useState<Data | null>(null);
+    const [selectedSeason, setSelectedSeason] = useState<number | null>(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -48,20 +57,32 @@ const ShowSeasonsPage: React.FC = () => {
 
       const seasons = showData.seasons
 
+      const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedSeason(Number(event.target.value));
+      };
+    
+      const selectedSeasonData = showData.seasons.find(season => season.season === selectedSeason);
+
     return (
-        <div>
+        <div className="season--wrapper">
           <Header />
           <h1>{showData.title}</h1>
           <form className="search--wrapper" onSubmit={(e) => e.preventDefault()}>
-            <select>
-              <option value="All">Seasons</option>
+            <select onChange={handleSeasonChange}>
+              <option value="">Select a season</option>
               {seasons.map((season) => (
-                        <option key={season.season} value={season.season}>
-                            {season.title}
-                        </option>
-                    ))}
+                <option key={season.season} value={season.season}>
+                  Season {season.season}
+                </option>
+                ))}
             </select>
-          </form>
+          </form> 
+          {selectedSeasonData && 
+          <div className="season--details">
+            <h2>Season {selectedSeasonData.season}: {selectedSeasonData.title}</h2>
+            <img src={selectedSeasonData.image}></img>
+          </div>
+          }
         </div>
     )
 }

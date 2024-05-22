@@ -289,10 +289,10 @@ body {
 
 .show--hero img {
     width: 300px;
-    display: block; /* Ensure the image is a block element */
-    margin: 20px auto; /* Center the image and add some margin */
-    padding: 10px; /* Add padding around the image */
-    border-radius: 10px; /* Optional: add rounded corners */
+    display: block; 
+    margin: 20px auto;
+    padding: 10px; 
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -300,4 +300,22 @@ body {
 .show--hero img:hover {
     transform: translateY(-10px) scale(1.05); /* Move up and scale slightly */
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.season--wrapper {
+    font-family: Raleway;
+}
+
+.season--details {
+    display: block;
+    text-align: center;
+}
+
+.season--details img {
+    width: 300px;
+    margin: 20px auto; 
+    padding: 10px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
