@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect} from 'react';
+import { createContext, useContext, useReducer, useEffect, ReactNode} from 'react';
 
 // The shape of the state
 type AudioPlayerState = {
@@ -21,6 +21,10 @@ const initialState: AudioPlayerState = {
   isPlaying: false,
 };
 
+interface AudioPlayerProviderProps {
+    children: ReactNode;
+  }
+
 // Creates the context with a default value of undefined
 const AudioPlayerContext = createContext<{ state: AudioPlayerState; dispatch: React.Dispatch<AudioPlayerAction> } | undefined>(undefined);
 
@@ -41,7 +45,7 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
 };
 
 // Provider component: Wraps child components and uses useReducer to create state and dispatch function and then provides them to the context.
-export const AudioPlayerProvider: React.FC = ({ children }) => {
+export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(audioPlayerReducer, initialState);
 
    // Persist state to localStorage
