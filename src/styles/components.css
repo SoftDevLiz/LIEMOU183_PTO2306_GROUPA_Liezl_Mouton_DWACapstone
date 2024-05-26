@@ -85,16 +85,16 @@ body {
 
 .card {
     width: 200px;
-    display: block; /* Ensure the image is a block element */
-      margin: 20px auto; /* Center the image and add some margin */
-      padding: 10px; /* Add padding around the image */
-      border-radius: 10px; /* Optional: add rounded corners */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add the drop shadow */
+    display: block; 
+      margin: 20px auto; 
+      padding: 10px;
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
       transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.05); /* Move up and scale slightly */
+    transform: translateY(-10px) scale(1.05); 
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -298,7 +298,7 @@ body {
 }
 
 .show--hero img:hover {
-    transform: translateY(-10px) scale(1.05); /* Move up and scale slightly */
+    transform: translateY(-10px) scale(1.05);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -319,3 +319,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.audio--player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+}
+

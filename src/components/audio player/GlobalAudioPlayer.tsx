@@ -30,7 +30,7 @@ const GlobalAudioPlayer: React.FC = () => {
     };
   
     return (
-      <div style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: '#fff' }}>
+      <div className='audio--player'>
         <AudioPlayer
           ref={audioRef}
           autoPlay={state.isPlaying}
