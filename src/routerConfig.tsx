@@ -1,16 +1,15 @@
-import { createBrowserRouter } from 'react-router-dom';
 import LandingPage from './components/landing page/LandingPage';
 import HomePage from './components/home page/HomePage';
 import Err404Page from './components/error page/Err404Page';
 import ShowDetailsPage from './components/show details page/ShowDetailsPage';
 import ShowSeasonsPage from './components/show seasons page/ShowSeasonsPage';
 
-export const router = createBrowserRouter([
+export const routes = [
   {
     path: '/',
     element: <LandingPage />,
     errorElement: <Err404Page />
-  }, 
+  },
   {
     path: '/home',
     element: <HomePage />,
@@ -26,4 +25,4 @@ export const router = createBrowserRouter([
     element: <ShowSeasonsPage />,
     errorElement: <Err404Page />
   }
-]);
+];
