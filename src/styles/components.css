@@ -3,11 +3,6 @@
     --primary-text: #333333;
 }
 
-body {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 .hero {
     height: 60vh;
     display: flex;
