@@ -3,6 +3,7 @@ import HomePage from './components/home page/HomePage';
 import Err404Page from './components/error page/Err404Page';
 import ShowDetailsPage from './components/show details page/ShowDetailsPage';
 import ShowSeasonsPage from './components/show seasons page/ShowSeasonsPage';
+import FavouritesPage from './components/favourites page/FavouritesPage';
 
 export const routes = [
   {
@@ -23,6 +24,11 @@ export const routes = [
   {
     path: '/show/:id/seasons',
     element: <ShowSeasonsPage />,
+    errorElement: <Err404Page />
+  },
+  {
+    path: '/favourites',
+    element: <FavouritesPage />,
     errorElement: <Err404Page />
   }
 ];
