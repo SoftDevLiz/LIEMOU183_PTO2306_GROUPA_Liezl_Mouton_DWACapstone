@@ -1,7 +1,6 @@
-// src/main.tsx
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import LandingPage from "./components/landing page/LandingPage";
 import HomePage from "./components/home page/HomePage";
 import Err404Page from "./components/error page/Err404Page";
@@ -40,7 +39,7 @@ root.render(
   <React.StrictMode>
     <AudioPlayerProvider>
       <RouterProvider router={router} />
-      <GlobalAudioPlayer /> {/* Add the GlobalAudioPlayer component */}
+      <GlobalAudioPlayer />
     </AudioPlayerProvider>
   </React.StrictMode>
 );
