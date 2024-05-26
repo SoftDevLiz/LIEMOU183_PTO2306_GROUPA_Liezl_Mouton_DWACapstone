@@ -1,4 +1,3 @@
-import React from 'react';
 import "../../styles/components.css";
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 
@@ -24,10 +23,15 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode }) => {
   return (
     <div className="card--wrapper">
       <div className="card--info">
-        <h3 className="card--title">Episode {episode.episode}: {episode.title}</h3>
+        <div className="title--wrapper">
+          <h3 className="card--title">Episode {episode.episode}: {episode.title}</h3>
+          <button onClick={handlePlay}>
+            <div className="play--icon"></div>
+          </button>
+        </div>
         <p className="card--description">{episode.description}</p>
       </div>
-      <button onClick={handlePlay}>Play</button>
+      
     </div>
   );
 };

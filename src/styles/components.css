@@ -101,7 +101,7 @@
 
 .home--card:hover {
     transform: translateY(-10px) scale(1.05); 
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -329,3 +329,18 @@
     max-width: 100%;
 }
 
+.title--wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.title--wrapper button {
+    background-image: url(/src/assets/play.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    margin-left: 10px; 
+}
