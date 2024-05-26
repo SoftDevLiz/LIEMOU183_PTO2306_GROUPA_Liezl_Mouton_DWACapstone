@@ -30,7 +30,7 @@ interface CardProps {
 
         return (
             <div className="card--wrapper">  
-            <div className="card" data-showid={id} onClick={handleClick}>
+            <div className="home--card" data-showid={id} onClick={handleClick}>
             <img 
                 className="card--image" 
                 src={image}

@@ -22,7 +22,7 @@ const StaticPreviewCard: React.FC<CardProps> = ({ image, title, seasons, genres,
     return (
      <footer>
         <div className="card--wrapper">  
-        <div className="card">
+        <div className="landing--card">
             <img 
                 className="card--image" 
                 src={image}

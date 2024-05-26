@@ -78,7 +78,7 @@
    display: flex;
 }
 
-.card {
+.landing--card {
     width: 200px;
     display: block; 
       margin: 20px auto; 
@@ -88,7 +88,18 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.home--card {
+    width: 200px;
+    display: block; 
+      margin: 20px auto; 
+      padding: 10px;
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.home--card:hover {
     transform: translateY(-10px) scale(1.05); 
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
@@ -290,11 +301,6 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.show--hero img:hover {
-    transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .season--wrapper {
