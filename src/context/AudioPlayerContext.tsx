@@ -48,8 +48,8 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
 export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(audioPlayerReducer, initialState);
 
-   // Persist state to localStorage
-   useEffect(() => {
+  // Load state from localStorage when component mounts
+  useEffect(() => {
     const savedState = localStorage.getItem('audioPlayerState');
     if (savedState) {
       const parsedState = JSON.parse(savedState);
@@ -59,10 +59,19 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
     }
   }, []);
 
+  // Save state to localStorage when component unmounts or before tab is closed
   useEffect(() => {
-    localStorage.setItem('audioPlayerState', JSON.stringify(state));
-  }, [state]);
+    const handleBeforeUnload = () => {
+      localStorage.setItem('audioPlayerState', JSON.stringify(state));
+    };
 
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [state]);
+  
   return (
     <AudioPlayerContext.Provider value={{ state, dispatch }}>
       {children}
