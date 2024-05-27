@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
 import ShareButton from "./ShareButton";
+import ShowDetailsSkeleton from "./ShowDetailsSkeletons";
 
 interface Data {
     id: string;
@@ -35,9 +36,13 @@ const ShowDetailsPage: React.FC<{}> = () => {
       }, [id]);
 
       if (!showData) {
-        return <div>Loading...</div>
-      }
-
+        return (
+            <>
+                <Header />
+                <ShowDetailsSkeleton />
+            </>
+        );
+    }
       const updated = new Date(showData.updated)
 
     return (
