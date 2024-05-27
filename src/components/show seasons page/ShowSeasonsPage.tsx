@@ -84,6 +84,7 @@ const ShowSeasonsPage: React.FC = () => {
         <>
           <div className="season--details">
             <h2>Season {selectedSeasonData.season}: {selectedSeasonData.title}</h2>
+            <h3>{selectedSeasonData.episodes.length} Episodes</h3>
             <img src={selectedSeasonData.image} alt={`Season ${selectedSeasonData.season}`} />
           </div>
           <div className="episodes--list">
