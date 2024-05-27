@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ShowList from './ShowList';
 import SearchAndSortHome from './SearchAndSortHome';
+import SkeletonCard from './SkeletonShowListCard';
 import "../../styles/components.css";
 
 interface Show {
@@ -17,6 +18,7 @@ const ShowContainer: React.FC<{}> = () => {
   const [showData, setShowData] = useState<Show[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortCriteria, setSortCriteria] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -27,8 +29,10 @@ const ShowContainer: React.FC<{}> = () => {
             }
             const jsonData = await response.json();
             setShowData(jsonData);
+            setLoading(false);
           } catch (error: any) {
             console.error('Error fetching data:', error);
+            setLoading(false);
           }
         }
         fetchData();
@@ -70,8 +74,18 @@ const ShowContainer: React.FC<{}> = () => {
 
   return (
     <div>
-      <SearchAndSortHome onSearch={handleSearch} onSort={handleSort} />
-      <ShowList shows={getFilteredAndSortedShows()} />
+             <div>
+            <SearchAndSortHome onSearch={handleSearch} onSort={handleSort} />
+            {loading ? (
+                <div className="home--skeleton--wrapper">
+                    {Array.from({ length: 100 }).map((_, index) => (
+                        <SkeletonCard key={index} />
+                    ))}
+                </div>
+            ) : (
+                <ShowList shows={getFilteredAndSortedShows()} />
+            )}
+        </div>
     </div>
   );
 };

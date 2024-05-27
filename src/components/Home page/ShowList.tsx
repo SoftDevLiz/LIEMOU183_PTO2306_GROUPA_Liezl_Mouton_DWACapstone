@@ -16,6 +16,7 @@ interface ShowListProps {
 }
 
 const ShowList: React.FC<ShowListProps> = ({ shows }) => {
+  
   return (
     <div className="showlist--wrapper">
       {shows.map((show: Show) => (

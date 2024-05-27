@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Hero from "./Hero";
 import StaticPreviewCard from "./StaticPreviewCard";
-import SkeletonCard from "../../utils/SkeletonShowCard";
+import SkeletonCard from "./SkeletonPreviewCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
