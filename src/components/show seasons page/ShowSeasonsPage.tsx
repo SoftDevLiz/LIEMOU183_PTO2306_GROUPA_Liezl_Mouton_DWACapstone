@@ -33,6 +33,7 @@ const ShowSeasonsPage: React.FC = () => {
   const [showData, setShowData] = useState<Data | null>(null);
   const [selectedSeason, setSelectedSeason] = useState<number | null>(null);
 
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -54,7 +55,13 @@ const ShowSeasonsPage: React.FC = () => {
   };
 
   if (!showData) {
-    return <div>Loading...</div>;
+    return (
+      <>
+      <Header />
+      <div className='skeleton season--skeleton--title'></div>
+      <div className='skeleton season--skeleton--dropdown'></div>
+      </>
+    )
   }
 
   const selectedSeasonData = showData.seasons.find(season => season.season === selectedSeason);
@@ -74,18 +81,22 @@ const ShowSeasonsPage: React.FC = () => {
         </select>
       </form>
       {selectedSeasonData && (
-        <div className="season--details">
-          <h2>Season {selectedSeasonData.season}: {selectedSeasonData.title}</h2>
-          <img src={selectedSeasonData.image} alt={`Season ${selectedSeasonData.season}`} />
-        </div>
-      )}
-      <div className="episodes--list">
-        {selectedSeasonData && selectedSeasonData.episodes.map((episode) => (
-          <EpisodeCard key={episode.episode} episode={episode}/>
-        ))}
-      </div>
+        <>
+          <div className="season--details">
+            <h2>Season {selectedSeasonData.season}: {selectedSeasonData.title}</h2>
+            <img src={selectedSeasonData.image} alt={`Season ${selectedSeasonData.season}`} />
+          </div>
+          <div className="episodes--list">
+            {selectedSeasonData.episodes.map((episode) => (
+              <EpisodeCard key={episode.episode} episode={episode} />
+            ))}
+          </div>
+        </>
+      ) 
+      }
     </div>
   );
+  
 };
 
 export default ShowSeasonsPage;
