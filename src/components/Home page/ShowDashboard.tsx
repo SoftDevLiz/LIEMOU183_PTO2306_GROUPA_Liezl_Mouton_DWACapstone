@@ -3,6 +3,7 @@ import ShowList from './ShowList';
 import SearchAndSortHome from './SearchAndSortHome';
 import SkeletonCard from './SkeletonShowListCard';
 import "../../styles/components.css";
+import genreMap from "../../utils/genreMap";
 
 interface Show {
   id: string;
@@ -10,9 +11,27 @@ interface Show {
   description: string;
   seasons: number;
   image: string;
-  genres: number[];
+  genres: string[];
   updated: string;
 }
+
+const groupShowsByGenre = (shows: Show[]) => {
+  const groupedShows: { [key: string]: Show[] } = {};
+
+  shows.forEach(show => {
+    show.genres.forEach(genreId => {
+      const genre = genreMap[genreId];
+      if (genre) {
+        if (!groupedShows[genre]) {
+          groupedShows[genre] = [];
+        }
+        groupedShows[genre].push(show);
+      }
+    });
+  });
+
+  return groupedShows;
+};
 
 const ShowContainer: React.FC<{}> = () => {
   const [showData, setShowData] = useState<Show[]>([]);
@@ -20,24 +39,23 @@ const ShowContainer: React.FC<{}> = () => {
   const [sortCriteria, setSortCriteria] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        async function fetchData() {
-          try {
-            const response = await fetch('https://podcast-api.netlify.app/shows');
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            const jsonData = await response.json();
-            setShowData(jsonData);
-            setLoading(false);
-          } catch (error: any) {
-            console.error('Error fetching data:', error);
-            setLoading(false);
-          }
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('https://podcast-api.netlify.app/shows');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-        fetchData();
-      }, []);
-
+        const jsonData = await response.json();
+        setShowData(jsonData);
+        setLoading(false);
+      } catch (error: any) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
@@ -72,20 +90,23 @@ const ShowContainer: React.FC<{}> = () => {
     return filteredShows;
   };
 
+  const filteredAndSortedShows = getFilteredAndSortedShows();
+  const groupedShows = sortCriteria === 'genre' ? groupShowsByGenre(filteredAndSortedShows) : undefined;
+
   return (
     <div>
-             <div>
-            <SearchAndSortHome onSearch={handleSearch} onSort={handleSort} />
-            {loading ? (
-                <div className="home--skeleton--wrapper">
-                    {Array.from({ length: 100 }).map((_, index) => (
-                        <SkeletonCard key={index} />
-                    ))}
-                </div>
-            ) : (
-                <ShowList shows={getFilteredAndSortedShows()} />
-            )}
-        </div>
+      <div>
+        <SearchAndSortHome onSearch={handleSearch} onSort={handleSort} />
+        {loading ? (
+          <div className="home--skeleton--wrapper">
+            {Array.from({ length: 100 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))}
+          </div>
+        ) : (
+          <ShowList groupedShows={groupedShows} shows={sortCriteria !== 'genre' ? filteredAndSortedShows : undefined} />
+        )}
+      </div>
     </div>
   );
 };

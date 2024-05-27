@@ -8,7 +8,7 @@ interface CardProps {
     image: string;
     title: string; 
     seasons: number;
-    genres: number[];
+    genres: string[];
     description: string;
     }
 

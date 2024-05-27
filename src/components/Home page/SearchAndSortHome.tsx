@@ -37,6 +37,7 @@ const SearchAndSortHome: React.FC<SearchAndSortHomeProps> = ({ onSearch, onSort 
         <option value="oldest">Oldest</option>
         <option value="a-z">A-Z</option>
         <option value="z-a">Z-A</option>
+        <option value="genre">Genres</option>
       </select>
     </form>
   );
