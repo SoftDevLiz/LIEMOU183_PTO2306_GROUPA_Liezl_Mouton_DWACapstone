@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import Hero from "./Hero";
-import StaticPreviewCard from "./StaticPreviewCard"
-import { useState, useEffect } from "react";
+import StaticPreviewCard from "./StaticPreviewCard";
+import SkeletonCard from "../../utils/SkeletonShowCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -13,27 +14,29 @@ interface Show {
     image: string;
     genres: number[];
     updated: string;
-  }
-
+}
 
 const LandingPage: React.FC<{}> = () => {
     const [showData, setShowData] = useState<Show[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-        useEffect(() => {
-            async function fetchData() {
-              try {
+    useEffect(() => {
+        async function fetchData() {
+            try {
                 const response = await fetch('https://podcast-api.netlify.app/shows');
                 if (!response.ok) {
-                  throw new Error('Network response was not ok');
+                    throw new Error('Network response was not ok');
                 }
                 const jsonData = await response.json();
                 setShowData(jsonData);
-              } catch (error: any) {
+                setLoading(false); 
+            } catch (error: any) {
                 console.error('Error fetching data:', error);
-              }
+                setLoading(false);
             }
-            fetchData();
-          }, []);
+        }
+        fetchData();
+    }, []);
 
     const settings = {
         infinite: true,
@@ -91,16 +94,22 @@ const LandingPage: React.FC<{}> = () => {
             <h1 className="footer--heading">Explore</h1>
             <footer className="footer">
                 <Slider {...settings}>
-                    {showData.map((show: Show) => (
-                        <StaticPreviewCard
-                        key={show.id}
-                        image={show.image} 
-                        title={show.title}
-                        seasons={show.seasons}
-                        genres={show.genres}
-                        description={show.description}
-                        />
-                    ))}
+                    {loading ? (
+                        Array.from({ length: 7 }).map((_, index) => (
+                            <SkeletonCard key={index} />
+                        ))
+                    ) : (
+                        showData.map((show: Show) => (
+                            <StaticPreviewCard
+                                key={show.id}
+                                image={show.image}
+                                title={show.title}
+                                seasons={show.seasons}
+                                genres={show.genres}
+                                description={show.description}
+                            />
+                        ))
+                    )}
                 </Slider>
             </footer>
         </>
