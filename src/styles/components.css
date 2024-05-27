@@ -131,6 +131,18 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.genre--title {
+    padding-top: 20px;
+    font-family: Raleway;
+}
+
+.shows--by--genre {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
 .home--skeleton--wrapper {
     display: flex;
     flex-wrap: wrap;

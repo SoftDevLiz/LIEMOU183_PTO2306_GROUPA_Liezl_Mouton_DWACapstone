@@ -19,11 +19,11 @@ interface ShowListProps {
 const ShowList: React.FC<ShowListProps> = ({ groupedShows, shows }) => {
   if (groupedShows) {
     return (
-      <div className="showlist--wrapper">
+      <div>
         {Object.keys(groupedShows).map(genre => (
-          <div key={genre} className="genre-section">
-            <h2>{genre}</h2>
-            <div className="shows">
+          <div key={genre}>
+            <h2 className='genre--title'>{genre}</h2>
+            <div className="shows--by--genre">
               {groupedShows[genre].map(show => (
                 <ShowListCard
                   key={show.id}
