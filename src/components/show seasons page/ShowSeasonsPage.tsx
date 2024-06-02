@@ -89,7 +89,7 @@ const ShowSeasonsPage: React.FC = () => {
           </div>
           <div className="episodes--list">
             {selectedSeasonData.episodes.map((episode) => (
-              <EpisodeCard key={episode.episode} episode={episode} />
+              <EpisodeCard key={episode.episode} episode={episode} podcast_title={showData.title} season_title={selectedSeasonData.title} />
             ))}
           </div>
         </>
