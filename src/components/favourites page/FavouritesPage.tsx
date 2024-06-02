@@ -1,9 +1,14 @@
 import "../../styles/components.css";
+import Header from "./Header";
+import FavouritesNavbar from "./FavouritesNavbar";
 
 const FavouritesPage: React.FC = () => {
 
  return (
-    <div>Favourites Page</div>
+   <>
+    <Header />
+    <FavouritesNavbar />
+   </>
  )   
 };
 
