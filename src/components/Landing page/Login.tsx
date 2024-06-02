@@ -4,7 +4,7 @@ import supabase from "../../supabaseConfig";
 
 const Login: React.FC<{}> = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
+    
     const toggleModal = () => {
         setIsOpen(!isOpen);
     }

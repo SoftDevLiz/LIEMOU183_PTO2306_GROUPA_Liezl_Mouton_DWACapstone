@@ -1,6 +1,6 @@
 import "../../styles/components.css"
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Header: React.FC<{}> = () => {
     const [accountIsOpen, setAccountIsOpen] = useState<boolean>(false)
@@ -23,7 +23,7 @@ const Header: React.FC<{}> = () => {
         </header>
         {accountIsOpen && (
             <div className="user--menu">
-                <h1>Favourites Library</h1>
+                <Link to={'/favourites'}>Favourites</Link>
                 <h1>Clear history</h1>
             </div>
         )}

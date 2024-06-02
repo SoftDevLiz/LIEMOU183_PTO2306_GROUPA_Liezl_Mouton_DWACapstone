@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "./LogoHeader";
 import Navbar from "./Navbar";
 import ShowDashboard from "./ShowDashboard";
 
