@@ -1,6 +1,7 @@
-import "../../styles/components.css"
+import "../../styles/components.css";
 
 const FavouritesPage: React.FC = () => {
+
  return (
     <div>Favourites Page</div>
  )   
