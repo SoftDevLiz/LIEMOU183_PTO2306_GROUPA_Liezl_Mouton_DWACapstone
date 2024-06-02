@@ -86,7 +86,6 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
           throw error;
         }
 
-        console.log('Episode added to favourites');
       } catch (error) {
         if (error instanceof Error) {
           console.error('Error adding episode to favourites:', error.message);
@@ -106,7 +105,6 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
           throw error;
         }
 
-        console.log('Episode removed from favourites');
       } catch (error) {
         if (error instanceof Error) {
           console.error('Error removing episode from favourites:', error.message);
