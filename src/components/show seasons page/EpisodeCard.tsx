@@ -12,8 +12,6 @@ interface Episode {
   file: string;
 }
 
-
-
 interface EpisodeCardProps {
   episode: Episode;
   podcast_title: string;
@@ -29,11 +27,29 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         setUserId(user.id);
+        checkIfFavourite(user.id);
+      }
+    };
+
+    const checkIfFavourite = async (userId: string) => {
+      const { data, error } = await supabase
+        .from('favourites')
+        .select('title')
+        .eq('user_id', userId)
+        .eq('title', episode.title);
+      
+      if (error) {
+        console.error('Error checking favourite status:', error.message);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        setFavourite(true);
       }
     };
 
     fetchUser();
-  }, []);
+  }, [episode.title]);
 
   const { dispatch } = useAudioPlayer();
 
@@ -80,17 +96,16 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
       }
     } else {
       try {
-        console.log('Attempting to remove favourite with title:', episode.title);
-        console.log('Attempting to remove favourite with user_id:', userId);
-
         const { error } = await supabase
           .from('favourites')
           .delete()
-          .eq('title', episode.title);
+          .eq('title', episode.title)
+          .eq('user_id', userId);
 
         if (error) {
           throw error;
         }
+
         console.log('Episode removed from favourites');
       } catch (error) {
         if (error instanceof Error) {
@@ -114,7 +129,6 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
         </div>
         <p className="card--description">{episode.description}</p>
       </div>
-      
     </div>
   );
 };
