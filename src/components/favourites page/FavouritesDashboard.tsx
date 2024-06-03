@@ -43,6 +43,13 @@ const FavouritesDashboard: React.FC = () => {
         const episodesForSelectedTitle = favourites.filter(favourite => favourite.podcast_title === selectedTitle);
         setSelectedTitle(episodesForSelectedTitle);
     };
+
+    const handleDelete = (deletedTitle: string) => {
+        const updatedFavourites = favourites.filter(favourite => favourite.title !== deletedTitle);
+        const updatedSelectedTitle = selectedTitle.filter(favourite => favourite.title !== deletedTitle);
+        setFavourites(updatedFavourites);
+        setSelectedTitle(updatedSelectedTitle);
+    };
     
     return (
         <>
@@ -65,6 +72,7 @@ const FavouritesDashboard: React.FC = () => {
                             title={episode.title} 
                             desc={episode.description}
                             audio={episode.file}
+                            onDelete={() => handleDelete(episode.title)}
                         />
                     )
                 })}

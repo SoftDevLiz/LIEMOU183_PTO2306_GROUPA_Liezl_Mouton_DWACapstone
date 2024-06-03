@@ -11,40 +11,21 @@ interface FavouriteEpisodeProps {
     title: string,
     desc: string,
     audio: string,
+    onDelete: () => void,
 }
 
-const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, episodeId, title, desc, audio }) => {
-    const [favourite, setFavourite] = useState<boolean>(false);
+const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, episodeId, title, desc, audio, onDelete }) => {
     const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchUser = async () => {
-          const { data: { user } } = await supabase.auth.getUser();
-          if (user) {
-            setUserId(user.id);
-            checkIfFavourite(user.id);
-          }
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                setUserId(user.id);
+            }
         };
-    
-        const checkIfFavourite = async (userId: string) => {
-          const { data, error } = await supabase
-            .from('favourites')
-            .select('title')
-            .eq('user_id', userId)
-            .eq('title', title);
-          
-          if (error) {
-            console.error('Error checking favourite status:', error.message);
-            return;
-          }
-    
-          if (data && data.length > 0) {
-            setFavourite(true);
-          }
-        };
-    
         fetchUser();
-      }, [title]);
+    });
 
       const { dispatch } = useAudioPlayer();
 
@@ -52,14 +33,27 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, 
         dispatch({ type: 'SET_TRACK', payload: audio });
         dispatch({ type: 'PLAY' });
       };
+      
+      const deleteFavourite = async () => {
+            const { error } = await supabase
+              .from('favourites')
+              .delete()
+              .eq('title', title)
+              .eq('user_id', userId);
     
+              if (error) {
+                console.error(error);
+            } else {
+                onDelete(); // Call the onDelete prop after successful deletion
+            }
+      }
 
     return (
         <div className="card--info">
         <div className="title--wrapper">
           <h3 className="card--title">Episode {episodeId}: {title}</h3>
           <button className="play--button" onClick={handlePlay}></button>
-          <button className="delete--button"></button>
+          <button className="delete--button" onClick={deleteFavourite}></button>
         </div>
         <h4>Added on {added}</h4>
         <h4>Season: {season}</h4>
