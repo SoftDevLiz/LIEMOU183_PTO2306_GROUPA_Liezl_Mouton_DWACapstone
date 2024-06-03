@@ -545,3 +545,22 @@
     font-style: italic;
     font-weight: 400;
 }
+
+.fave--form {
+    margin-bottom: 20px;
+}
+
+.fave--show--title {
+    font-family: Raleway;
+    text-align: center;
+}
+
+.fave--hero {
+    width: 300px;
+    display: block; 
+    margin: 20px auto;
+    padding: 10px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

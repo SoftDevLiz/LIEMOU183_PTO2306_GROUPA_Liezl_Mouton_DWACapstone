@@ -50,10 +50,10 @@ const FavouritesDashboard: React.FC = () => {
         setFavourites(updatedFavourites);
         setSelectedTitle(updatedSelectedTitle);
     };
-    
+
     return (
         <>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form className="fave--form" onSubmit={(e) => e.preventDefault()}>
                 <select onChange={(e) => handleSelect(e.target.value)}>
                     <option value="">Select a show</option>
                     {Array.from(new Set(favourites.map(favourite => favourite.podcast_title))).map((podcastTitle, index) => (
@@ -62,8 +62,15 @@ const FavouritesDashboard: React.FC = () => {
                 </select>
             </form>
             <div>
+            {selectedTitle.length > 0 && (
+                    <>
+                    <h2 className="fave--show--title">{selectedTitle[0].podcast_title}</h2>
+                    <img src={selectedTitle[0].podcast_image} className="fave--hero"/>
+                    </>
+                )}
                 {selectedTitle.map((episode) => {
                     return (
+                        <>
                         <FavouriteEpisodeCard 
                             key={episode.episode_id}
                             season={episode.season_title}
@@ -74,6 +81,7 @@ const FavouritesDashboard: React.FC = () => {
                             audio={episode.file}
                             onDelete={() => handleDelete(episode.title)}
                         />
+                        </>
                     )
                 })}
             </div>

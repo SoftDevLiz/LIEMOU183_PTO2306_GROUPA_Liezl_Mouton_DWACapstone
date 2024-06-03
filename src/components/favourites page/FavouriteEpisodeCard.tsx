@@ -54,11 +54,12 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, 
     return (
         <div className="fave--episode--wrapper">
         <div className="fave--title--wrapper">
-          <h3 className="card--title">Episode {episodeId}: {title}</h3>
+          <h3 className="card--title">{title}</h3>
           <button className="play--button" onClick={handlePlay}></button>
           <button className="delete--button" onClick={deleteFavourite}></button>
         </div>
         <h4>Season: {season}</h4>
+        <h4>Episode {episodeId}</h4>
         <p className="card--description">{desc}</p>
         <h4 className="fave--date--added">Added on {date}</h4>
       </div>
