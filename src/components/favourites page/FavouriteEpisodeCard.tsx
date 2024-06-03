@@ -48,16 +48,19 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, 
             }
       }
 
+      const date = new Date(added).toLocaleDateString();
+
+
     return (
-        <div className="card--info">
-        <div className="title--wrapper">
+        <div className="fave--episode--wrapper">
+        <div className="fave--title--wrapper">
           <h3 className="card--title">Episode {episodeId}: {title}</h3>
           <button className="play--button" onClick={handlePlay}></button>
           <button className="delete--button" onClick={deleteFavourite}></button>
         </div>
-        <h4>Added on {added}</h4>
         <h4>Season: {season}</h4>
         <p className="card--description">{desc}</p>
+        <h4 className="fave--date--added">Added on {date}</h4>
       </div>
     )
 };

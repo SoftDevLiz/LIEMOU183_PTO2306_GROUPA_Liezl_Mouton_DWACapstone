@@ -530,3 +530,18 @@
     width: 20px;
     margin-left: 10px; 
 }
+
+.fave--episode--wrapper {
+    font-family: Raleway;
+}
+
+.fave--title--wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.fave--date--added {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+}
