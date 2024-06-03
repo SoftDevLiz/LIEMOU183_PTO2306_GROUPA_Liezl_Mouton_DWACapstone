@@ -1,6 +1,7 @@
 import "../../styles/components.css";
 import Header from "./Header";
 import FavouritesNavbar from "./FavouritesNavbar";
+import FavouritesDashboard from "./FavouritesDashboard";
 
 const FavouritesPage: React.FC = () => {
 
@@ -8,6 +9,7 @@ const FavouritesPage: React.FC = () => {
    <>
     <Header />
     <FavouritesNavbar />
+    <FavouritesDashboard />
    </>
  )   
 };
