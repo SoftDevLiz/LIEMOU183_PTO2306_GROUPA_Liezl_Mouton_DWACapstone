@@ -519,3 +519,14 @@
     width: 10%;
     height: 1.2em; 
 }
+
+.delete--button {
+    background-image: url(/src/assets/trash.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    margin-left: 10px; 
+}
