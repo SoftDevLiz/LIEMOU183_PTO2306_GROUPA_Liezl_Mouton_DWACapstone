@@ -568,3 +568,12 @@
 .fave--dropdown {
     margin-right: 10px;
 }
+
+.fave--navbar--wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.fave--navbar--wrapper h1 {
+    margin-right: 15px;
+}
