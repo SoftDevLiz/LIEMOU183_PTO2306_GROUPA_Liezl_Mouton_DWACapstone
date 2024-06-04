@@ -90,7 +90,7 @@ const FavouritesDashboard: React.FC = () => {
     }
   
     setSelectedTitle(filteredEpisodes); 
-  }, [filter, selectedTitle]);
+  }, [filter]);
 
   
   return (
