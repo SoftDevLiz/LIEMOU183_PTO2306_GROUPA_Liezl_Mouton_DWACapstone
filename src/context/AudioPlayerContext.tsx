@@ -1,11 +1,12 @@
-import { createContext, useContext, useReducer, useEffect, ReactNode} from 'react';
+import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import supabase from '../supabaseConfig';
 
 // The shape of the state
 type AudioPlayerState = {
   currentTrack: string | null;
   currentTime: number;
   isPlaying: boolean;
-  episodeTitle: string | null;
+  episodeTitle: string | null; // Add episodeTitle to the state
 };
 
 // The actions that can modify the state
@@ -13,9 +14,10 @@ type AudioPlayerAction =
   | { type: 'SET_TRACK'; payload: { track: string, title: string } }
   | { type: 'SET_TIME'; payload: number }
   | { type: 'PLAY' }
-  | { type: 'PAUSE' };
+  | { type: 'PAUSE' }
+  | { type: 'RECORD_WATCH_HISTORY'; payload: { episodeTitle: string, episodeId: number, userId: string } };
 
-// The initial states when the app first loads which takes the shape of "AudioPlayerState"
+// The initial state when the app first loads which takes the shape of "AudioPlayerState"
 const initialState: AudioPlayerState = {
   currentTrack: null,
   currentTime: 0,
@@ -23,14 +25,10 @@ const initialState: AudioPlayerState = {
   episodeTitle: null,
 };
 
-interface AudioPlayerProviderProps {
-    children: ReactNode;
-  }
-
-// Creates the context with a default value of undefined
+// Create the context with a default value of undefined
 const AudioPlayerContext = createContext<{ state: AudioPlayerState; dispatch: React.Dispatch<AudioPlayerAction> } | undefined>(undefined);
 
-// Reducer function: Handles state changes based on the dispatched actions. It takes the current state and an action then returns a new state based on the action type.
+// Reducer function: Handles state changes based on the dispatched actions
 const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction): AudioPlayerState => {
   switch (action.type) {
     case 'SET_TRACK':
@@ -41,10 +39,32 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
       return { ...state, isPlaying: true };
     case 'PAUSE':
       return { ...state, isPlaying: false };
+    case 'RECORD_WATCH_HISTORY':
+      recordWatchHistory(action.payload.episodeTitle, action.payload.episodeId, action.payload.userId);
+      return state;
     default:
       return state;
   }
 };
+
+// Function to record the watch history in Supabase
+const recordWatchHistory = async (episodeTitle: string, episodeId: number, userId: string) => {
+  const { error } = await supabase
+    .from('watch_history')
+    .upsert({
+      episode_title: episodeTitle,
+      episode_id: episodeId, 
+      user_id: userId, 
+    });
+
+  if (error) {
+    console.error('Error recording watch history:', error.message);
+  }
+};
+
+interface AudioPlayerProviderProps {
+  children: ReactNode;
+}
 
 // Provider component: Wraps child components and uses useReducer to create state and dispatch function and then provides them to the context.
 export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
@@ -89,5 +109,3 @@ export const useAudioPlayer = () => {
   }
   return context;
 };
-
-

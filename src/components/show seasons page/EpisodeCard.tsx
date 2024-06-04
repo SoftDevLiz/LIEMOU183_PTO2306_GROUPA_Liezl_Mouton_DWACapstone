@@ -23,8 +23,6 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
   const [favourite, setFavourite] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | null>(null);
 
-  const header = `${podcast_title}: ${episode.title}`
-
   useEffect(() => {
     const fetchUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -56,9 +54,16 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
 
   const { dispatch } = useAudioPlayer();
 
+  const header = `${podcast_title}: ${episode.title}`
+
   const handlePlay = () => {
-    dispatch({ type: 'SET_TRACK', payload: { track: episode.file, title: header } });
-    dispatch({ type: 'PLAY' });
+    if (userId) {
+      dispatch({ type: 'SET_TRACK', payload: { track: episode.file, title: header } });
+      dispatch({ type: 'PLAY' });
+      dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { episodeTitle: episode.title, episodeId: episode.episode, userId } });
+    } else {
+      console.error('User not logged in');
+    }
   };
 
   const handleFavourite = async () => {
@@ -126,7 +131,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
           <h3 className="card--title">Episode {episode.episode}: {episode.title}</h3>
           <button className="play--button" onClick={handlePlay}></button>
           <button className="favourite--button" onClick={handleFavourite}>
-          {favourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {favourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </button>
         </div>
         <p className="card--description">{episode.description}</p>
