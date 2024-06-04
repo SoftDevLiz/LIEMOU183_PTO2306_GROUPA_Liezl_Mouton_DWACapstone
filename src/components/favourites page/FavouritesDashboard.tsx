@@ -96,7 +96,7 @@ const FavouritesDashboard: React.FC = () => {
   return (
     <>
       <form className="fave--form" onSubmit={(e) => e.preventDefault()}>
-        <select onChange={(e) => handleSelect(e.target.value)}>
+        <select className="fave--dropdown" onChange={(e) => handleSelect(e.target.value)}>
           <option value="">Select a show</option>
           {Array.from(new Set(favourites.map(favourite => favourite.podcast_title))).map((podcastTitle, index) => (
             <option key={index} value={podcastTitle}>{podcastTitle}</option>
