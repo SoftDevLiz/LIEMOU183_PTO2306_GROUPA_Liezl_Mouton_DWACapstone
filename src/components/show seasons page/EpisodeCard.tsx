@@ -23,6 +23,8 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
   const [favourite, setFavourite] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | null>(null);
 
+  const header = `${podcast_title}: ${episode.title}`
+
   useEffect(() => {
     const fetchUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -55,7 +57,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
   const { dispatch } = useAudioPlayer();
 
   const handlePlay = () => {
-    dispatch({ type: 'SET_TRACK', payload: episode.file });
+    dispatch({ type: 'SET_TRACK', payload: { track: episode.file, title: header } });
     dispatch({ type: 'PLAY' });
   };
 

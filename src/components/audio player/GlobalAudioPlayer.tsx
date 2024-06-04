@@ -32,6 +32,7 @@ const GlobalAudioPlayer: React.FC = () => {
     return (
       <div className='audio--player'>
         <AudioPlayer
+          header={state.episodeTitle || ''}
           ref={audioRef}
           autoPlay={state.isPlaying}
           src={state.currentTrack || ''}

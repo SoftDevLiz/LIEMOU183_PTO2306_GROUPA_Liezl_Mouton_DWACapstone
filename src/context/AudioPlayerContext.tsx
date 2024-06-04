@@ -5,11 +5,12 @@ type AudioPlayerState = {
   currentTrack: string | null;
   currentTime: number;
   isPlaying: boolean;
+  episodeTitle: string | null;
 };
 
 // The actions that can modify the state
 type AudioPlayerAction = 
-  | { type: 'SET_TRACK'; payload: string }
+  | { type: 'SET_TRACK'; payload: { track: string, title: string } }
   | { type: 'SET_TIME'; payload: number }
   | { type: 'PLAY' }
   | { type: 'PAUSE' };
@@ -19,6 +20,7 @@ const initialState: AudioPlayerState = {
   currentTrack: null,
   currentTime: 0,
   isPlaying: false,
+  episodeTitle: null,
 };
 
 interface AudioPlayerProviderProps {
@@ -32,7 +34,7 @@ const AudioPlayerContext = createContext<{ state: AudioPlayerState; dispatch: Re
 const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction): AudioPlayerState => {
   switch (action.type) {
     case 'SET_TRACK':
-      return { ...state, currentTrack: action.payload, currentTime: 0, isPlaying: true };
+      return { ...state, currentTrack: action.payload.track, currentTime: 0, isPlaying: true, episodeTitle: action.payload.title };
     case 'SET_TIME':
       return { ...state, currentTime: action.payload };
     case 'PLAY':
@@ -53,7 +55,7 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
     const savedState = localStorage.getItem('audioPlayerState');
     if (savedState) {
       const parsedState = JSON.parse(savedState);
-      dispatch({ type: 'SET_TRACK', payload: parsedState.currentTrack });
+      dispatch({ type: 'SET_TRACK', payload: { track: parsedState.currentTrack, title: parsedState.episodeTitle } });
       dispatch({ type: 'SET_TIME', payload: parsedState.currentTime });
       parsedState.isPlaying ? dispatch({ type: 'PLAY' }) : dispatch({ type: 'PAUSE' });
     }

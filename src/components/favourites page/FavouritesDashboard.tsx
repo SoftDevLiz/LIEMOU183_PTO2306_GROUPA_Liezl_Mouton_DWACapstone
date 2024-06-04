@@ -120,6 +120,7 @@ const FavouritesDashboard: React.FC = () => {
         {selectedTitle.map((episode, index) => (
           <FavouriteEpisodeCard
             key={index}
+            show={episode.podcast_title}
             season={episode.season_title}
             added={episode.created_at}
             episodeId={episode.episode_id}

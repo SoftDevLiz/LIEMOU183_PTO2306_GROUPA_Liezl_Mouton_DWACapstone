@@ -5,6 +5,7 @@ import supabase from "../../supabaseConfig";
 
 interface FavouriteEpisodeProps {
     key: number,
+    show: string,
     season: string,
     added: any,
     episodeId: number,
@@ -14,8 +15,10 @@ interface FavouriteEpisodeProps {
     onDelete: () => void,
 }
 
-const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, episodeId, title, desc, audio, onDelete }) => {
+const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season, added, episodeId, title, desc, audio, onDelete }) => {
     const [userId, setUserId] = useState<string | null>(null);
+
+    const header = `${show}: ${title}`;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -30,7 +33,7 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, 
       const { dispatch } = useAudioPlayer();
 
       const handlePlay = () => {
-        dispatch({ type: 'SET_TRACK', payload: audio });
+        dispatch({ type: 'SET_TRACK', payload: {track: audio, title: header }});
         dispatch({ type: 'PLAY' });
       };
       
