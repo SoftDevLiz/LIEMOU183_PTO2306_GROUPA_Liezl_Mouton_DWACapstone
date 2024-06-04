@@ -2,7 +2,6 @@ import "../../styles/components.css"
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
-import ShareButton from "./ShareButton";
 import ShowDetailsSkeleton from "./ShowDetailsSkeletons";
 
 interface Data {
@@ -51,7 +50,6 @@ const ShowDetailsPage: React.FC<{}> = () => {
             <div className="show--wrapper" >
               <div className="show--title--wrapper">
                 <h1>{showData.title}</h1>
-                <ShareButton />
               </div>  
               <div className="show--hero">
                 <h2>{showData.genres.join(' ● ')}</h2>
