@@ -44,11 +44,11 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ season, added, 
               if (error) {
                 console.error(error);
             } else {
-                onDelete(); // Call the onDelete prop after successful deletion
+                onDelete(); 
             }
       }
 
-      const date = new Date(added).toLocaleDateString();
+      const date = new Date(added).toLocaleString();
 
 
     return (
