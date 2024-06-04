@@ -20,6 +20,7 @@ const FavouritesDashboard: React.FC = () => {
   const [favourites, setFavourites] = useState<Favourite[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
   const [selectedTitle, setSelectedTitle] = useState<Favourite[]>([]);
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -64,6 +65,34 @@ const FavouritesDashboard: React.FC = () => {
     setSelectedTitle(updatedSelectedTitle);
   };
 
+  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value);
+  };
+
+  useEffect(() => {
+    let filteredEpisodes = [...selectedTitle]; 
+  
+    switch (filter) {
+      case "most-recent":
+        filteredEpisodes.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        break;
+      case "oldest":
+        filteredEpisodes.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+        break;
+      case "a-z":
+        filteredEpisodes.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "z-a":
+        filteredEpisodes.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default:
+        break;
+    }
+  
+    setSelectedTitle(filteredEpisodes); 
+  }, [filter, selectedTitle]);
+
+  
   return (
     <>
       <form className="fave--form" onSubmit={(e) => e.preventDefault()}>
@@ -73,6 +102,13 @@ const FavouritesDashboard: React.FC = () => {
             <option key={index} value={podcastTitle}>{podcastTitle}</option>
           ))}
         </select>
+        <select value={filter} onChange={handleFilter}>
+          <option value="">Filter by</option>
+          <option value="most-recent">Most recent</option>
+          <option value="oldest">Oldest</option>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+        </select>
       </form>
       <div>
         {selectedTitle.length > 0 && (
@@ -81,9 +117,9 @@ const FavouritesDashboard: React.FC = () => {
             <img src={selectedTitle[0].podcast_image} className="fave--hero" alt={selectedTitle[0].podcast_title} />
           </>
         )}
-        {selectedTitle.map((episode) => (
+        {selectedTitle.map((episode, index) => (
           <FavouriteEpisodeCard
-            key={episode.episode_id}
+            key={index}
             season={episode.season_title}
             added={episode.created_at}
             episodeId={episode.episode_id}
