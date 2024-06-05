@@ -1,4 +1,5 @@
 import "../../styles/components.css"
+import WatchedIcon from "../show seasons page/WatchedIcon";
 import { useState, useEffect } from "react";
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import supabase from "../../supabaseConfig";
@@ -16,7 +17,8 @@ interface FavouriteEpisodeProps {
 }
 
 const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season, added, episodeId, title, desc, audio, onDelete }) => {
-    const [userId, setUserId] = useState<string | null>(null);
+    const [userId, setUserId] = useState<string>("");
+    const [watched, setWatched] = useState<boolean>(false);
 
     const header = `${show}: ${title}`;
 
@@ -25,16 +27,37 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season, a
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
                 setUserId(user.id);
+                checkIfWatched(userId);
             }
         };
         fetchUser();
-    });
+
+        const checkIfWatched = async (userId: string) => {
+          const { data, error } = await supabase
+            .from('watch_history')
+            .select('episode_title')
+            .eq('user_id', userId)
+            .eq('episode_title', title);
+    
+          if (error) {
+            console.error('Error checking watched status:', error.message);
+            return;
+          }
+    
+          if (data && data.length > 0) {
+            setWatched(true);
+          } else {
+            setWatched(false);
+          }
+        };
+    }, [title]);
 
       const { dispatch } = useAudioPlayer();
 
       const handlePlay = () => {
         dispatch({ type: 'SET_TRACK', payload: {track: audio, title: header }});
         dispatch({ type: 'PLAY' });
+        dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { episodeTitle: title, episodeId: episodeId, userId } });
       };
       
       const deleteFavourite = async () => {
@@ -64,7 +87,10 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season, a
         <h4>Season: {season}</h4>
         <h4>Episode {episodeId}</h4>
         <p className="card--description">{desc}</p>
+        <div className="fave--watched--wrapper">
         <h4 className="fave--date--added">Added on {date}</h4>
+        {watched && <WatchedIcon />}
+        </div>
       </div>
     )
 };

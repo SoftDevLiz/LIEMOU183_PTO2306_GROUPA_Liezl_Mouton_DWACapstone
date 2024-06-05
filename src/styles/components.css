@@ -541,6 +541,7 @@
 }
 
 .fave--date--added {
+    margin-right: 20px;
     font-size: 15px;
     font-style: italic;
     font-weight: 400;
@@ -576,4 +577,24 @@
 
 .fave--navbar--wrapper h1 {
     margin-right: 15px;
+}
+
+.watched--wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.watched--wrapper h4 {
+    font-size: 15px;
+    margin-right: 10px;
+    font-weight: 400;
+}
+
+.watched--wrapper img {
+    width: 15px;
+}
+
+.fave--watched--wrapper {
+    display: flex;
+    align-items: center;
 }

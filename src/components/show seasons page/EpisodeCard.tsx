@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import supabase from "../../supabaseConfig";
 import FavoriteIcon from "./FavouriteIcon";
 import FavoriteBorderIcon from "./FavouriteBorderIcon";
+import WatchedIcon from "./WatchedIcon";
 
 interface Episode {
   title: string;
@@ -21,7 +22,10 @@ interface EpisodeCardProps {
 
 const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, season_title, podcast_image }) => {
   const [favourite, setFavourite] = useState<boolean>(false);
-  const [userId, setUserId] = useState<string | null>(null);
+  const [watched, setWatched] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string>("");
+
+  const { dispatch } = useAudioPlayer();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -29,6 +33,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
       if (user) {
         setUserId(user.id);
         checkIfFavourite(user.id);
+        checkIfWatched(user.id);
       }
     };
 
@@ -46,15 +51,38 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
 
       if (data && data.length > 0) {
         setFavourite(true);
+      } else {
+        setFavourite(false);
+      }
+    };
+
+    const checkIfWatched = async (userId: string) => {
+      const { data, error } = await supabase
+        .from('watch_history')
+        .select('episode_title')
+        .eq('user_id', userId)
+        .eq('episode_title', episode.title);
+
+      if (error) {
+        console.error('Error checking watched status:', error.message);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        setWatched(true);
+      } else {
+        setWatched(false);
       }
     };
 
     fetchUser();
   }, [episode.title]);
 
-  const { dispatch } = useAudioPlayer();
+  useEffect(() => {
+    setWatched(false); // Reset watched state when episode changes
+  }, [episode.title]);
 
-  const header = `${podcast_title}: ${episode.title}`
+  const header = `${podcast_title}: ${episode.title}`;
 
   const handlePlay = () => {
     if (userId) {
@@ -135,6 +163,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
           </button>
         </div>
         <p className="card--description">{episode.description}</p>
+        {watched && <WatchedIcon />}
       </div>
     </div>
   );
