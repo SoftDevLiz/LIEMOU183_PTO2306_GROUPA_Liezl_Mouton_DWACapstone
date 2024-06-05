@@ -6,7 +6,7 @@ type AudioPlayerState = {
   currentTrack: string | null;
   currentTime: number;
   isPlaying: boolean;
-  episodeTitle: string | null; // Add episodeTitle to the state
+  episodeTitle: string | null;
 };
 
 // The actions that can modify the state
@@ -15,7 +15,7 @@ type AudioPlayerAction =
   | { type: 'SET_TIME'; payload: number }
   | { type: 'PLAY' }
   | { type: 'PAUSE' }
-  | { type: 'RECORD_WATCH_HISTORY'; payload: { episodeTitle: string, episodeId: number, userId: string } };
+  | { type: 'RECORD_WATCH_HISTORY'; payload: { currentTime: number, episodeTitle: string, episodeId: number, userId: string } };
 
 // The initial state when the app first loads which takes the shape of "AudioPlayerState"
 const initialState: AudioPlayerState = {
@@ -40,7 +40,7 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
     case 'PAUSE':
       return { ...state, isPlaying: false };
     case 'RECORD_WATCH_HISTORY':
-      recordWatchHistory(action.payload.episodeTitle, action.payload.episodeId, action.payload.userId);
+      recordWatchHistory(action.payload);
       return state;
     default:
       return state;
@@ -48,13 +48,14 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
 };
 
 // Function to record the watch history in Supabase
-const recordWatchHistory = async (episodeTitle: string, episodeId: number, userId: string) => {
+const recordWatchHistory = async (payload: {episodeTitle: string, episodeId: number, userId: string, currentTime: number}) => {
   const { error } = await supabase
     .from('watch_history')
     .upsert({
-      episode_title: episodeTitle,
-      episode_id: episodeId, 
-      user_id: userId, 
+      episode_title: payload.episodeTitle,
+      episode_id: payload.episodeId, 
+      user_id: payload.userId,
+      timestamp: payload.currentTime,
     });
 
   if (error) {
@@ -93,7 +94,7 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [state]);
-  
+
   return (
     <AudioPlayerContext.Provider value={{ state, dispatch }}>
       {children}

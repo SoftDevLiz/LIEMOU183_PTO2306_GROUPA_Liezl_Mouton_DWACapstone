@@ -89,7 +89,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
     if (userId) {
       dispatch({ type: 'SET_TRACK', payload: { track: episode.file, title: header } });
       dispatch({ type: 'PLAY' });
-      dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { episodeTitle: episode.title, episodeId: episode.episode, userId } });
+      dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { currentTime: 0, episodeTitle: episode.title, episodeId: episode.episode, userId } });
     } else {
       console.error('User not logged in');
     }
