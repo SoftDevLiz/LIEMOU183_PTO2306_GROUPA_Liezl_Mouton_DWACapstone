@@ -93,6 +93,7 @@ const ShowSeasonsPage: React.FC = () => {
                 key={episode.episode} 
                 episode={episode} 
                 podcast_title={showData.title} 
+                season_id={selectedSeasonData.season}
                 season_title={selectedSeasonData.title}
                 podcast_image={showData.image}
                 />

@@ -16,11 +16,12 @@ interface Episode {
 interface EpisodeCardProps {
   episode: Episode;
   podcast_title: string;
+  season_id: number;
   season_title: string;
   podcast_image: string;
 }
 
-const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, season_title, podcast_image }) => {
+const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, season_id, season_title, podcast_image }) => {
   const [favourite, setFavourite] = useState<boolean>(false);
   const [watched, setWatched] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
@@ -112,6 +113,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
               podcast_title: podcast_title,
               podcast_image: podcast_image,
               season_title: season_title,
+              season_id: season_id,
               episode_id: episode.episode,
               title: episode.title,
               description: episode.description,

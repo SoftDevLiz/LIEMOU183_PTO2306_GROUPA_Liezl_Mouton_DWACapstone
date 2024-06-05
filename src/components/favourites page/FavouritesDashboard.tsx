@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import supabase from "../../supabaseConfig";
 
 interface Favourite {
-  id: number;
   user_id: number;
   podcast_title: string;
   podcast_image: string;
   season_title: string;
+  season_id: number;
   created_at: string;
   episode_id: number;
   title: string;
@@ -91,7 +91,6 @@ const FavouritesDashboard: React.FC = () => {
   
     setSelectedTitle(filteredEpisodes); 
   }, [filter]);
-
   
   return (
     <>
@@ -122,6 +121,7 @@ const FavouritesDashboard: React.FC = () => {
             key={index}
             show={episode.podcast_title}
             season={episode.season_title}
+            season_id={episode.season_id}
             added={episode.created_at}
             episodeId={episode.episode_id}
             title={episode.title}
