@@ -24,12 +24,14 @@ const GlobalAudioPlayer: React.FC = () => {
   useEffect(() => {
     if (audioRef.current && state.currentTrack) {
       audioRef.current.audio.current!.currentTime = state.currentTime;
+      console.log('Setting audio currentTime to:', state.currentTime);
     }
   }, [state.currentTrack, state.currentTime]);
 
   const handlePause = () => {
     if (userId && state.episodeTitle) {
       const episodeTitle = state.episodeTitle.split(': ').pop() || state.episodeTitle; // Extract original episode title
+      console.log('Recording watch history on pause with currentTime:', audioRef.current?.audio.current?.currentTime);
       dispatch({
         type: 'RECORD_WATCH_HISTORY',
         payload: { currentTime: audioRef.current?.audio.current?.currentTime || state.currentTime, episodeTitle, episodeId: 1, userId }
@@ -39,12 +41,14 @@ const GlobalAudioPlayer: React.FC = () => {
   };
 
   const handleTimeUpdate = (e: any) => {
+    console.log('Time update:', e.target.currentTime);
     dispatch({ type: 'SET_TIME', payload: e.target.currentTime });
   };
 
   const handleEnded = () => {
     if (userId && state.episodeTitle) {
       const episodeTitle = state.episodeTitle.split(': ').pop() || state.episodeTitle; // Extract original episode title
+      console.log('Recording watch history on ended with currentTime:', audioRef.current?.audio.current?.currentTime);
       dispatch({
         type: 'RECORD_WATCH_HISTORY',
         payload: { currentTime: audioRef.current?.audio.current?.currentTime || state.currentTime, episodeTitle, episodeId: 1, userId }

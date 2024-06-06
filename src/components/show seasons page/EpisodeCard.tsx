@@ -91,6 +91,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
 
   const handlePlay = () => {
     if (userId) {
+      console.log('Dispatching PLAY with currentTime:', timestamp);
       dispatch({ type: 'PLAY', payload: { track: episode.file, title: header, currentTime: timestamp } });
     } else {
       console.error('User not logged in');
