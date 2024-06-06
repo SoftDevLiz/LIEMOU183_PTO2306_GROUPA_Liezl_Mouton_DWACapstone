@@ -1,5 +1,3 @@
-// utils/fuzzySearchUtil.ts
-
 import Fuse from 'fuse.js';
 
 interface Show {

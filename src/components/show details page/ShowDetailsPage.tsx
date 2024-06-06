@@ -52,7 +52,7 @@ const ShowDetailsPage: React.FC<{}> = () => {
                 <h1>{showData.title}</h1>
               </div>  
               <div className="show--hero">
-                <h2>{showData.genres.join(' ● ')}</h2>
+                {showData.genres && <h2>{showData.genres.join(' ● ')}</h2>}
                 <img src={showData.image} alt={showData.title}/>
               </div>
                 <h2>Last updated {updated.toLocaleDateString('en-US')}</h2>
