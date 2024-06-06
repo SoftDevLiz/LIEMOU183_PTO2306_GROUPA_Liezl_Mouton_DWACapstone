@@ -1,3 +1,5 @@
+// Updated useAudioPlayer in AudioPlayerContext
+
 import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 import supabase from '../supabaseConfig';
 
@@ -43,7 +45,6 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
     case 'PAUSE':
       return { ...state, isPlaying: false };
     case 'RECORD_WATCH_HISTORY':
-      console.log('Dispatching RECORD_WATCH_HISTORY with payload:', action.payload);
       recordWatchHistory(action.payload);
       return state;
     default:
@@ -53,7 +54,6 @@ const audioPlayerReducer = (state: AudioPlayerState, action: AudioPlayerAction):
 
 // Function to record the watch history in Supabase
 const recordWatchHistory = async (payload: { currentTime: number, episodeTitle: string, episodeId: number, userId: string }) => {
-  console.log('Recording watch history in Supabase with payload:', payload);
   const { error } = await supabase
     .from('watch_history')
     .upsert({
@@ -80,17 +80,34 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
     const savedState = localStorage.getItem('audioPlayerState');
     if (savedState) {
       const parsedState = JSON.parse(savedState);
-      console.log('Restoring audio player state from localStorage:', parsedState);
       dispatch({ type: 'PLAY', payload: { track: parsedState.currentTrack, title: parsedState.episodeTitle, currentTime: parsedState.currentTime } });
       dispatch({ type: 'SET_TIME', payload: parsedState.currentTime });
-      parsedState.isPlaying ? dispatch({ type: 'PLAY', payload: { track: parsedState.currentTrack, title: parsedState.episodeTitle, currentTime: parsedState.currentTime  } }) : dispatch({ type: 'PAUSE' });
+      parsedState.isPlaying ? dispatch({ type: 'PLAY', payload: { track: parsedState.currentTrack, title: parsedState.episodeTitle, currentTime: parsedState.currentTime } }) : dispatch({ type: 'PAUSE' });
     }
   }, []);
 
   useEffect(() => {
-    const handleBeforeUnload = () => {
+    const handleSaveState = () => {
       localStorage.setItem('audioPlayerState', JSON.stringify(state));
-      console.log('Saving audio player state to localStorage:', state);
+    };
+
+    window.addEventListener('beforeunload', handleSaveState);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleSaveState);
+    };
+  }, [state]);
+
+  useEffect(() => {
+    const audioElement = document.querySelector('audio'); // Assuming audio tag in the DOM
+    if (!audioElement) return;
+
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (audioElement.paused) return; // Skip prompt if audio is paused
+      const message = 'Audio is playing. Are you sure you want to leave?';
+      event.preventDefault();
+      event.returnValue = message; // Firefox requires setting `returnValue`
+      return message; // Chromium-based browsers require returning a string message
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -98,7 +115,7 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [state]);
+  }, []);
 
   return (
     <AudioPlayerContext.Provider value={{ state, dispatch }}>
