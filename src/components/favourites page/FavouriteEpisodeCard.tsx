@@ -20,6 +20,7 @@ interface FavouriteEpisodeProps {
 const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season_id, season, added, episodeId, title, desc, audio, onDelete }) => {
     const [userId, setUserId] = useState<string>("");
     const [watched, setWatched] = useState<boolean>(false);
+    const [timestamp, setTimestamp] = useState<number>(0);
 
     const header = `${show}: ${title}`;
 
@@ -36,35 +37,38 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season_id
         const checkIfWatched = async (userId: string) => {
           const { data, error } = await supabase
             .from('watch_history')
-            .select('episode_title')
+            .select('timestamp')
             .eq('user_id', userId)
-            .eq('episode_title', title);
-
+            .eq('episode_title', title)
+            .order('timestamp', { ascending: false })
+            .limit(1);
+    
           if (error) {
             console.error('Error checking watched status:', error.message);
             return;
           }
-
+    
           if (data && data.length > 0) {
-            setWatched(true);
-          } else {
-            setWatched(false);
+            if (data[0].timestamp > 42) {
+              setWatched(true);
+            } else {
+              setTimestamp(data[0].timestamp);
+            }
           }
         };
-        
+    
         fetchUser();
-    }, [title]);
+      }, [title]);
 
     const { dispatch } = useAudioPlayer();
 
     const handlePlay = () => {
-        if (userId) {
-          dispatch({ type: 'PLAY', payload: { track: audio, title: header } });
-          dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { currentTime: 0, episodeTitle: title, episodeId: episodeId, userId } });
-        } else {
-          console.error('User not logged in');
-        }
-      };
+      if (userId) {
+        dispatch({ type: 'PLAY', payload: { track: audio, title: header, currentTime: timestamp } });
+      } else {
+        console.error('User not logged in');
+      }
+    };
       
     const deleteFavourite = async () => {
         const { error } = await supabase
