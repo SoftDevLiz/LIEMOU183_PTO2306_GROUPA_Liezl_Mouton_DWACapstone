@@ -12,8 +12,8 @@ interface Show {
 }
 
 interface ShowListProps {
-  groupedShows?: { [key: string]: Show[] };
-  shows?: Show[];
+  groupedShows?: { [key: string]: Show[] } | undefined; // Optional grouped shows by genre
+  shows?: Show[] | undefined; // Optional ungrouped shows to display
 }
 
 const ShowList: React.FC<ShowListProps> = ({ groupedShows, shows }) => {

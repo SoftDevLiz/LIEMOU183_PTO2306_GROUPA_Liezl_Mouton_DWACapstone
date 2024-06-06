@@ -4,6 +4,8 @@ import SearchAndSortHome from './SearchAndSortHome';
 import SkeletonCard from './SkeletonShowListCard';
 import "../../styles/components.css";
 import genreMap from "../../utils/genreMap";
+import { createFuzzySearch, searchWithFuzzy } from '../../utils/fuzzySearch';
+import Fuse from 'fuse.js';
 
 interface Show {
   id: string;
@@ -36,6 +38,7 @@ const groupShowsByGenre = (shows: Show[]) => {
 const ShowContainer: React.FC<{}> = () => {
   const [showData, setShowData] = useState<Show[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [fuse, setFuse] = useState<Fuse<Show> | null>(null);
   const [sortCriteria, setSortCriteria] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -48,6 +51,10 @@ const ShowContainer: React.FC<{}> = () => {
         }
         const jsonData = await response.json();
         setShowData(jsonData);
+
+        // Initialize Fuse.js search
+        setFuse(createFuzzySearch(jsonData));
+
         setLoading(false);
       } catch (error: any) {
         console.error('Error fetching data:', error);
@@ -66,23 +73,23 @@ const ShowContainer: React.FC<{}> = () => {
   };
 
   const getFilteredAndSortedShows = () => {
-    let filteredShows = showData.filter(show =>
-      show.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredShows = searchTerm ? searchWithFuzzy(fuse, searchTerm, showData) : showData;
 
     switch (sortCriteria) {
       case 'most-recent':
-        filteredShows = filteredShows.sort((a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime());
+        filteredShows.sort((a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime());
         break;
       case 'oldest':
-        filteredShows = filteredShows.sort((a, b) => new Date(a.updated).getTime() - new Date(b.updated).getTime());
+        filteredShows.sort((a, b) => new Date(a.updated).getTime() - new Date(b.updated).getTime());
         break;
       case 'a-z':
-        filteredShows = filteredShows.sort((a, b) => a.title.localeCompare(b.title));
+        filteredShows.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case 'z-a':
-        filteredShows = filteredShows.sort((a, b) => b.title.localeCompare(a.title));
+        filteredShows.sort((a, b) => b.title.localeCompare(a.title));
         break;
+      case 'genre':
+        return groupShowsByGenre(filteredShows);
       default:
         break;
     }
@@ -91,7 +98,6 @@ const ShowContainer: React.FC<{}> = () => {
   };
 
   const filteredAndSortedShows = getFilteredAndSortedShows();
-  const groupedShows = sortCriteria === 'genre' ? groupShowsByGenre(filteredAndSortedShows) : undefined;
 
   return (
     <div>
@@ -104,7 +110,10 @@ const ShowContainer: React.FC<{}> = () => {
             ))}
           </div>
         ) : (
-          <ShowList groupedShows={groupedShows} shows={sortCriteria !== 'genre' ? filteredAndSortedShows : undefined} />
+          <ShowList
+            groupedShows={sortCriteria === 'genre' ? filteredAndSortedShows : undefined}
+            shows={sortCriteria !== 'genre' ? filteredAndSortedShows : undefined}
+          />
         )}
       </div>
     </div>
