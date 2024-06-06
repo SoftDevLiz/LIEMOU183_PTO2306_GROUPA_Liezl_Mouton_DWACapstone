@@ -300,6 +300,7 @@
 }
 
 .user--menu {
+    display: block;
     font-family: Roboto;
     font-size: 10px;
     width: 200px;
@@ -597,4 +598,23 @@
 .fave--watched--wrapper {
     display: flex;
     align-items: center;
+}
+
+.delete--history--wrapper {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.delete--history--wrapper img {
+    width: 15px;
+}
+
+.delete--history--button {
+    font-family: Roboto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: white;
+    cursor: pointer;
 }

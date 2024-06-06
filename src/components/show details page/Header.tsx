@@ -1,9 +1,11 @@
 import "../../styles/components.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import supabase from "../../supabaseConfig";
 
 const Header: React.FC<{}> = () => {
     const [accountIsOpen, setAccountIsOpen] = useState<boolean>(false)
+    const [userId, setUserId] = useState<string>("");
 
     const toggleModal = () => {
         setAccountIsOpen(!accountIsOpen)
@@ -15,6 +17,31 @@ const Header: React.FC<{}> = () => {
         navigate(-1)
     }
 
+    useEffect(() => {
+        const fetchUser = async () => {
+          const { data: { user } } = await supabase.auth.getUser();
+          if (user) {
+            setUserId(user.id);
+          }
+        }
+
+        fetchUser();
+
+    }, []);
+
+    const clearListeningHistory = async () => {
+        const { data, error } = await supabase
+        .from('watch_history')
+        .delete()
+        .eq('user_id', userId); 
+
+        if (error) {
+            console.error('Error deleting user history:', error);
+        } else {
+            console.log('User history cleared:', data);
+        }
+    }
+
     return (
         <>
         <header className="headerWithBack">
@@ -24,7 +51,10 @@ const Header: React.FC<{}> = () => {
         {accountIsOpen && (
             <div className="user--menu">
                 <Link to={'/favourites'}>Favourites</Link>
-                <h1>Clear history</h1>
+                <div className="delete--history--wrapper">
+                    <button onClick={clearListeningHistory} className="delete--history--button">Clear listening history</button>
+                    <img src="/src/assets/trash.png" />
+                </div>
             </div>
         )}
         </>
