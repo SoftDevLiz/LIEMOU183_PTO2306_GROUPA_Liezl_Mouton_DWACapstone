@@ -72,7 +72,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
       }
 
       if (data && data.length > 0) {
-        if (data[0].timestamp === 42.1016) {
+        if (data[0].timestamp > 42) {
           setWatched(true);
         } else {
           setTimestamp(data[0].timestamp);
