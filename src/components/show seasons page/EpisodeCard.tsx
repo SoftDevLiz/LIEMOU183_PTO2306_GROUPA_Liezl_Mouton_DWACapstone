@@ -1,4 +1,3 @@
-import "../../styles/components.css";
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import { useState, useEffect } from "react";
 import supabase from "../../supabaseConfig";
@@ -24,6 +23,7 @@ interface EpisodeCardProps {
 const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, season_id, season_title, podcast_image }) => {
   const [favourite, setFavourite] = useState<boolean>(false);
   const [watched, setWatched] = useState<boolean>(false);
+  const [timestamp, setTimestamp] = useState<number>(0);
   const [userId, setUserId] = useState<string>("");
 
   const { dispatch } = useAudioPlayer();
@@ -60,9 +60,11 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
     const checkIfWatched = async (userId: string) => {
       const { data, error } = await supabase
         .from('watch_history')
-        .select('episode_title')
+        .select('timestamp')
         .eq('user_id', userId)
-        .eq('episode_title', episode.title);
+        .eq('episode_title', episode.title)
+        .order('timestamp', { ascending: false })
+        .limit(1);
 
       if (error) {
         console.error('Error checking watched status:', error.message);
@@ -70,9 +72,11 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
       }
 
       if (data && data.length > 0) {
-        setWatched(true);
-      } else {
-        setWatched(false);
+        if (data[0].timestamp === 42.1016) {
+          setWatched(true);
+        } else {
+          setTimestamp(data[0].timestamp);
+        }
       }
     };
 
@@ -87,9 +91,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
 
   const handlePlay = () => {
     if (userId) {
-      dispatch({ type: 'SET_TRACK', payload: { track: episode.file, title: header } });
-      dispatch({ type: 'PLAY' });
-      dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { currentTime: 0, episodeTitle: episode.title, episodeId: episode.episode, userId } });
+      dispatch({ type: 'PLAY', payload: { track: episode.file, title: header, currentTime: timestamp } });
     } else {
       console.error('User not logged in');
     }

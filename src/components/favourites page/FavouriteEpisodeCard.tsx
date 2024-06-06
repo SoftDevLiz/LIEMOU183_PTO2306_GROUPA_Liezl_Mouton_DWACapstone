@@ -58,10 +58,13 @@ const FavouriteEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ show, season_id
     const { dispatch } = useAudioPlayer();
 
     const handlePlay = () => {
-        dispatch({ type: 'SET_TRACK', payload: {track: audio, title: header }});
-        dispatch({ type: 'PLAY' });
-        dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { episodeTitle: title, episodeId: episodeId, userId } });
-    };
+        if (userId) {
+          dispatch({ type: 'PLAY', payload: { track: audio, title: header } });
+          dispatch({ type: 'RECORD_WATCH_HISTORY', payload: { currentTime: 0, episodeTitle: title, episodeId: episodeId, userId } });
+        } else {
+          console.error('User not logged in');
+        }
+      };
       
     const deleteFavourite = async () => {
         const { error } = await supabase

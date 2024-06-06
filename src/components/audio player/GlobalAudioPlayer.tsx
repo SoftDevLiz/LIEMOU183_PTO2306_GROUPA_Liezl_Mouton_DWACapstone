@@ -1,42 +1,41 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import supabase from '../../supabaseConfig';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import supabase from '../../supabaseConfig';
 
 const GlobalAudioPlayer: React.FC = () => {
   const { state, dispatch } = useAudioPlayer();
   const audioRef = useRef<AudioPlayer>(null);
-  const [userId, setUserId] = useState<string>("");
-
-  const fetchUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      setUserId(user.id)
-    }
-  }
-
-  fetchUser();
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (audioRef.current) {
+    const fetchUserId = async () => {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error('Error fetching user ID:', error.message);
+      } else {
+        setUserId(user?.id || null);
+      }
+    };
+    fetchUserId();
+  }, []);
+
+  useEffect(() => {
+    if (audioRef.current && state.currentTrack) {
       audioRef.current.audio.current!.currentTime = state.currentTime;
     }
-  }, [state.currentTime]);
-
-  const handlePlay = () => {
-    dispatch({ type: 'PLAY' });
-  };
+  }, [state.currentTrack, state.currentTime]);
 
   const handlePause = () => {
-    dispatch({ type: 'PAUSE' });
-
     if (userId && state.episodeTitle) {
+      const episodeTitle = state.episodeTitle.split(': ').pop() || state.episodeTitle; // Extract original episode title
       dispatch({
         type: 'RECORD_WATCH_HISTORY',
-        payload: { currentTime: state.currentTime, episodeTitle: state.episodeTitle, episodeId: 1, userId }
+        payload: { currentTime: audioRef.current?.audio.current?.currentTime || state.currentTime, episodeTitle, episodeId: 1, userId }
       });
     }
+    dispatch({ type: 'PAUSE' });
   };
 
   const handleTimeUpdate = (e: any) => {
@@ -44,14 +43,14 @@ const GlobalAudioPlayer: React.FC = () => {
   };
 
   const handleEnded = () => {
-    dispatch({ type: 'PAUSE' });
-
     if (userId && state.episodeTitle) {
+      const episodeTitle = state.episodeTitle.split(': ').pop() || state.episodeTitle; // Extract original episode title
       dispatch({
         type: 'RECORD_WATCH_HISTORY',
-        payload: { currentTime: state.currentTime, episodeTitle: state.episodeTitle, episodeId: 1, userId }
+        payload: { currentTime: audioRef.current?.audio.current?.currentTime || state.currentTime, episodeTitle, episodeId: 1, userId }
       });
     }
+    dispatch({ type: 'PAUSE' });
   };
 
   return (
@@ -61,7 +60,6 @@ const GlobalAudioPlayer: React.FC = () => {
         ref={audioRef}
         autoPlay={state.isPlaying}
         src={state.currentTrack || ''}
-        onPlay={handlePlay}
         onPause={handlePause}
         onListen={handleTimeUpdate}
         onEnded={handleEnded}
