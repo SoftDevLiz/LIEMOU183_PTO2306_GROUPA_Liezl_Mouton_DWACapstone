@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import supabase from "../../supabaseConfig";
 import "../../styles/components.css";
 
 const ShareButton: React.FC<{}> = () => {
     const [showPopup, setShowPopup] = useState(false);
+    const [userId, setUserId] = useState<string>("");
+
+    useEffect(() => {
+    const fetchUser = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+            const userId = user.id;
+            setUserId(userId);
+        }
+    }
+    fetchUser();
+    }, []); 
 
     const copyShareableLink = () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
+        navigator.clipboard.writeText(`http://localhost:5173/favourites/${userId}`).then(() => {
             setShowPopup(true);
             setTimeout(() => {
                 setShowPopup(false);
