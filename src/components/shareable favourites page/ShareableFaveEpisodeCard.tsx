@@ -2,7 +2,6 @@ import "../../styles/components.css";
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 
 interface FavouriteEpisodeProps {
-    key: number,
     userId: string,
     show: string,
     season_id: number;
@@ -20,11 +19,11 @@ const ShareableFaveEpisodeCard: React.FC<FavouriteEpisodeProps> = ({ userId, sho
     const { dispatch } = useAudioPlayer();
 
     const handlePlay = () => {
-      if (userId) {
-        dispatch({ type: 'PLAY', payload: { track: audio, title: header, currentTime: 0 } });
-      } else {
-        console.error('User not logged in');
-      }
+        if (userId) {
+            dispatch({ type: 'PLAY', payload: { track: audio, title: header, currentTime: 0 } });
+        } else {
+            console.error('User not logged in');
+        }
     };
       
     return (

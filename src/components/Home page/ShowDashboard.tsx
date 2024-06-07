@@ -17,8 +17,8 @@ interface Show {
   updated: string;
 }
 
-const groupShowsByGenre = (shows: Show[]) => {
-  const groupedShows: { [key: string]: Show[] } = {};
+const groupShowsByGenre = (shows: Show[]): { [genre: string]: Show[] } => {
+  const groupedShows: { [genre: string]: Show[] } = {};
 
   shows.forEach(show => {
     show.genres.forEach(genreId => {
@@ -72,7 +72,7 @@ const ShowContainer: React.FC<{}> = () => {
     setSortCriteria(criteria);
   };
 
-  const getFilteredAndSortedShows = () => {
+  const getFilteredAndSortedShows = (): { groupedShows?: { [genre: string]: Show[] }; shows?: Show[] } => {
     const filteredShows = searchTerm ? searchWithFuzzy(fuse, searchTerm, showData) : showData;
 
     switch (sortCriteria) {
@@ -89,33 +89,32 @@ const ShowContainer: React.FC<{}> = () => {
         filteredShows.sort((a, b) => b.title.localeCompare(a.title));
         break;
       case 'genre':
-        return groupShowsByGenre(filteredShows);
+        return { groupedShows: groupShowsByGenre(filteredShows) };
       default:
-        break;
+        return { shows: filteredShows };
     }
 
-    return filteredShows;
+    // Default case to avoid TypeScript error, return undefined
+    return { shows: filteredShows };
   };
 
   const filteredAndSortedShows = getFilteredAndSortedShows();
 
   return (
     <div>
-      <div>
-        <SearchAndSortHome onSearch={handleSearch} onSort={handleSort} />
-        {loading ? (
-          <div className="home--skeleton--wrapper">
-            {Array.from({ length: 100 }).map((_, index) => (
-              <SkeletonCard key={index} />
-            ))}
-          </div>
-        ) : (
-          <ShowList
-            groupedShows={sortCriteria === 'genre' ? filteredAndSortedShows : undefined}
-            shows={sortCriteria !== 'genre' ? filteredAndSortedShows : undefined}
-          />
-        )}
-      </div>
+      <SearchAndSortHome onSearch={handleSearch} onSort={handleSort} />
+      {loading ? (
+        <div className="home--skeleton--wrapper">
+          {Array.from({ length: 100 }).map((_, index) => (
+            <SkeletonCard key={index} />
+          ))}
+        </div>
+      ) : (
+        <ShowList
+          groupedShows={filteredAndSortedShows.groupedShows}
+          shows={filteredAndSortedShows.shows}
+        />
+      )}
     </div>
   );
 };

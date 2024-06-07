@@ -1,3 +1,4 @@
+import React from 'react';
 import ShowListCard from './ShowListCard';
 import "../../styles/components.css";
 
@@ -12,8 +13,8 @@ interface Show {
 }
 
 interface ShowListProps {
-  groupedShows?: { [key: string]: Show[] } | undefined; // Optional grouped shows by genre
-  shows?: Show[] | undefined; // Optional ungrouped shows to display
+  groupedShows?: { [genre: string]: Show[] };
+  shows?: Show[];
 }
 
 const ShowList: React.FC<ShowListProps> = ({ groupedShows, shows }) => {
@@ -24,7 +25,7 @@ const ShowList: React.FC<ShowListProps> = ({ groupedShows, shows }) => {
           <div key={genre}>
             <h2 className='genre--title'>{genre}</h2>
             <div className="shows--by--genre">
-              {groupedShows[genre].map(show => (
+              {groupedShows[genre].map((show: Show) => (
                 <ShowListCard
                   key={show.id}
                   id={show.id}
@@ -45,7 +46,7 @@ const ShowList: React.FC<ShowListProps> = ({ groupedShows, shows }) => {
   if (shows) {
     return (
       <div className="showlist--wrapper">
-        {shows.map(show => (
+        {shows.map((show: Show) => (
           <ShowListCard
             key={show.id}
             id={show.id}
