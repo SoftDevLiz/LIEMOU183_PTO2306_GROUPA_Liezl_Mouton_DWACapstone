@@ -47,7 +47,7 @@ const Login: React.FC<{}> = () => {
                             <input name="email" placeholder="Email"></input>
                             <input type="submit"></input>
                         </form>
-                        <p>Podify uses magic to login. Check your email.</p>
+                        <p>Podify uses a magic link to create your account and login. <br></br>Check your email.<br></br>✨</p>
                     </div>
                 </div>
             )}

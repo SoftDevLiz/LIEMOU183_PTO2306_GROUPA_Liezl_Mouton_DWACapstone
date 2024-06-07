@@ -4,24 +4,40 @@
 }
 
 .hero {
-    height: 60vh;
+    height: 60vh; /* Fixed height */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #d63c40;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; 
+    width: 100%; 
+    margin: 0;
+    border-radius: 10px;
 }
+
 
 .hero--logo {
     width: 500px;
+    margin-bottom: 30px;
 }
 
 .hero--tagline {
     font-family: Raleway;
-    color: #333;
+    color: white;
     padding-bottom: 40px;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 2.5rem;
+    text-align: center;
+    color: white;
 }
 
 .hero--button {
+    margin-top: 30px;
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #f6311b 0, #d61518 100%);
@@ -69,7 +85,8 @@
 
 .footer--heading {
     font-family: Raleway;
-    padding-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .skeleton--card {
@@ -221,12 +238,17 @@
 }
 
 .modal--box {
-    position: fixed; 
-    width: 400px;
-    height: 400px; 
-    border-radius: 10px;
-    background-color: white; 
-    border: solid black;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 300px;
+    height: 300px; 
+    background: rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1.8px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px; 
+    z-index: 1000;
 }
 
 .modal--exit {
@@ -236,20 +258,22 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
 }
 
 .modal--header {
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 .modal--content {
-    font-family: Archivo Black;
+    text-align: center;
+    font-family: Roboto;
     margin: 20px;
-    color: var(--primary-text);
+    color: var(--primary-text)
 }
 
 .login--form {
@@ -258,8 +282,31 @@
 }
 
 .login--form input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2); 
     margin-bottom: 10px;
+    color: black
 }
+
+input[type=submit] {
+    font-family: Raleway;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #4CAF50; /* Button background color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049; /* Button hover effect */
+}
+
 
 .loggedIn--header {
     display: flex;

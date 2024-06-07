@@ -5,17 +5,17 @@ const Hero: React.FC<{}> = () => {
 
 
     return (
-        <header>
+        <>
             <div className="hero">
                 <img 
                     className="hero--logo" 
-                    src="./src/assets/logodark.png" 
+                    src="./src/assets/podlogowhite.png" 
                     alt="Podify logo"
                 />
                 <h1 className="hero--tagline">Discover, Listen, Connect</h1>
                 <Login />
             </div>
-        </header>
+        </>
     )
 }
 
