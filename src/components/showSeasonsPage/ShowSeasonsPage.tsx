@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import "../../styles/components.css";
-import Header from "../show details page/Header";
+import Header from "../showDetailsPage/Header";
 import EpisodeCard from "./EpisodeCard";
 import { useParams } from "react-router-dom";
 

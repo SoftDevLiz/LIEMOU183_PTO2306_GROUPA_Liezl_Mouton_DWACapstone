@@ -1,5 +1,5 @@
 import "../../styles/components.css";
-import WatchedIcon from "../show seasons page/WatchedIcon";
+import WatchedIcon from "../showSeasonsPage/WatchedIcon";
 import { useState, useEffect } from "react";
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import supabase from "../../supabaseConfig";
