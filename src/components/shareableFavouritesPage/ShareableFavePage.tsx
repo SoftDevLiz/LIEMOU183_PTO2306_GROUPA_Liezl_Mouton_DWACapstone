@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import supabase from "../../supabaseConfig";
 import ShareableFaveEpisodeCard from "./ShareableFaveEpisodeCard";
+import logoDark from "../../assets/icons/logodark.png"
 
 const ShareableFavePage: React.FC = () => {
     const [sharedFavourites, setSharedFavourites] = useState<any[]>([]);
@@ -37,7 +38,7 @@ const ShareableFavePage: React.FC = () => {
     return (
         <div className="shareable--fave--page">
             <div className="shareable--fave--header">
-                <img src="/src/assets/logodark.png" onClick={navigateToLanding} />
+                <img src={logoDark} onClick={navigateToLanding} />
                 <h1>Discover, Listen, Connect</h1>
                 <h1>Favourites from your friend!</h1>
             </div>

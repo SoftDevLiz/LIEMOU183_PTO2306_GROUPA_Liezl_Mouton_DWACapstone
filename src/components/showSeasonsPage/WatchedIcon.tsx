@@ -1,10 +1,11 @@
 import "../../styles/components.css"
+import checkmark from "../../assets/icons/checkmark.png"
 
 const WatchedIcon:React.FC = () => {
     return (
         <div className="watched--wrapper">
         <h4>You've watched this </h4>
-        <img src="../../src/assets/icons/checkmark.png" />
+        <img src={checkmark} />
         </div>
     )
 }

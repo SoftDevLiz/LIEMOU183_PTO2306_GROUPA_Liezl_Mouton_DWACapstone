@@ -2,6 +2,7 @@ import "../../styles/components.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../../supabaseConfig";
+import logoDark from "../../assets/icons/logodark.png"
 
 const Header: React.FC<{}> = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -38,7 +39,7 @@ const Header: React.FC<{}> = () => {
     return (
         <>
             <header className="loggedIn--header">
-                <img src="../../src/assets/icons/logodark.png" />
+                <img src={logoDark} />
                 <button onClick={toggleModal}></button>
             </header>
             {isOpen && (
