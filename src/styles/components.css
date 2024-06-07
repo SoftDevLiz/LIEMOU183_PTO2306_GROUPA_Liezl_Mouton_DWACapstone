@@ -631,3 +631,13 @@
     z-index: 1000;
 }
 
+.shareable--fave--header {
+    display: block;
+    text-align: center;
+    font-family: Raleway;
+}
+
+.shareable--fave--header img {
+    cursor: pointer;
+    width: 500px;
+}

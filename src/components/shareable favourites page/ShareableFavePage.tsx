@@ -29,11 +29,19 @@ const ShareableFavePage: React.FC = () => {
         }
       }, [userId]);
 
-      console.log(sharedFavourites)
+      const navigateToLanding = () => {
+        const baseURL = window.location.origin;
+        const path = '/';
+        const url = `${baseURL}${path}`;
+        window.open(url, '_blank')
+      }
 
     return (
         <div>
+            <div className="shareable--fave--header">
+            <img src="/src/assets/logodark.png" onClick={navigateToLanding} />
             <h1>Favourites from your friend!</h1>
+            </div>
             {sharedFavourites.map((episode, index) => 
             <ShareableFaveEpisodeCard
                 key={index}
