@@ -40,6 +40,7 @@ const ShareableFavePage: React.FC = () => {
         <div>
             <div className="shareable--fave--header">
             <img src="/src/assets/logodark.png" onClick={navigateToLanding} />
+            <h1 className="hero--tagline">Discover, Listen, Connect</h1>
             <h1>Favourites from your friend!</h1>
             </div>
             {sharedFavourites.map((episode, index) => 
