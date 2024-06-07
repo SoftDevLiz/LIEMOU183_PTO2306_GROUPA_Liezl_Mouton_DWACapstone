@@ -325,12 +325,14 @@ input[type=submit]:hover {
     background-repeat: no-repeat;
     border: none;
     background-color: white;
-    height: 30px;
-    width: 30px; 
+    height: 40px;
+    width: 40px; 
+    cursor: pointer;
 }
 
 .navbar {
     font-family: Raleway;
+    color: var(--primary-text);
     margin-bottom: 20px;
 }
 
@@ -347,18 +349,26 @@ input[type=submit]:hover {
 }
 
 .user--menu {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-family: Roboto;
-    font-size: 10px;
-    width: 200px;
-    height: 300px;
-    border: 1px solid black;
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
+    width: 250px;
+    height: auto;
+    padding: 20px;
     position: absolute;
-    right: 2%;
+    right: 3%;
+    top: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1.8px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    z-index: 1000;
 }
+
 
 .search--wrapper {
     margin-bottom: 20px;
@@ -648,24 +658,33 @@ input[type=submit]:hover {
     align-items: center;
 }
 
-.delete--history--wrapper {
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.delete--history--wrapper img {
-    width: 15px;
-}
-
 .delete--history--button {
-    font-family: Roboto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-    background-color: white;
     cursor: pointer;
+    text-align: center;
 }
+
+.user--menu a,
+.delete--history--button {
+    display: block;
+    width: 200px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #ff3b42;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.user--menu a:hover,
+.delete--history--button:hover {
+    background: #ff0008;
+}
+
 
 .popup {
     background-color: #333;
