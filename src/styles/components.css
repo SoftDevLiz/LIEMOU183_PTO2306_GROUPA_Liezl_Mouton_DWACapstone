@@ -133,10 +133,22 @@
 
 
 .card--wrapper {
-   padding-left: 20px;
-   padding-right: 20px;
-   display: flex;
-}
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+ }
+
+ .card--wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ }
+ 
 
 .landing--card {
     width: 200px;
@@ -228,6 +240,7 @@
 .card--info h3 {
     font-family: Roboto;
 }
+
 .card--info span {
     padding-bottom: 5px;
     font-family: Roboto;
@@ -514,6 +527,7 @@ option {
 
 .season--wrapper {
     font-family: Raleway;
+    color: var(--primary-text);
 }
 
 .season--details {
@@ -552,6 +566,11 @@ option {
     height: 20px;
     width: 20px;
     margin-left: 10px; 
+    cursor: pointer;
+}
+
+.play--button:hover {
+    background-image: url(/src/assets/playhover.png);
 }
 
 .favourite--button {
@@ -561,11 +580,12 @@ option {
     border: none;
     height: 20px;
     width: 20px;
-    margin-left: 20px; 
+    margin-left: 10px;
 }
 
 .favourite--icon {
     width: 20px;
+    cursor: pointer;
 }
 
 .skeleton {
