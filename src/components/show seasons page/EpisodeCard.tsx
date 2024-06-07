@@ -158,7 +158,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, podcast_title, seaso
   };
 
   return (
-    <div className="card--wrapper">
+    <div className="ind--episode--card--wrapper">
       <div className="card--info">
         <div className="title--wrapper">
           <h3 className="card--title">Episode {episode.episode}: {episode.title}</h3>

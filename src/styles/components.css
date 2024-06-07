@@ -132,7 +132,7 @@
 }
 
 
-.card--wrapper {
+.ind--episode--card--wrapper {
     padding: 20px;
     margin: 20px;
     display: flex;
@@ -144,7 +144,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
  }
 
- .card--wrapper:hover {
+ .ind--episode--card--wrapper:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
  }
@@ -441,7 +441,8 @@ option {
     border: none;
     background-color: white;
     height: 40px;
-    width: 40px; 
+    width: 40px;
+    cursor: pointer;
 }
 
 .headerWithBack--account {
@@ -466,6 +467,9 @@ option {
     cursor: pointer;
 }
 
+.share--button:hover {
+    transform: translateY(-5px);
+}
 .show--wrapper {
     font-family: Raleway;
     color: var(--primary-text);
@@ -663,11 +667,26 @@ option {
     background-color: white;
     height: 20px;
     width: 20px;
-    margin-left: 10px; 
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .fave--episode--wrapper {
     font-family: Raleway;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fave--episode--wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .fave--title--wrapper {

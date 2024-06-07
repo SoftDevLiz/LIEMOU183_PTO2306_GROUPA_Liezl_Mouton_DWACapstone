@@ -53,7 +53,6 @@ const Header: React.FC<{}> = () => {
             <div className="user--menu">
                 <div className="delete--history--wrapper">
                     <button onClick={clearListeningHistory} className="delete--history--button">Clear listening history</button>
-                    <img src="/src/assets/trash.png" />
                 </div>
             </div>
         )}
