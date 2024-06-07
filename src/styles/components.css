@@ -19,7 +19,6 @@
     border-radius: 10px;
 }
 
-
 .hero--logo {
     width: 500px;
     margin-bottom: 30px;
@@ -797,9 +796,11 @@ option {
     display: block;
     text-align: center;
     font-family: Raleway;
+    color: var(--primary-text);
 }
 
 .shareable--fave--header img {
     cursor: pointer;
     width: 500px;
 }
+
