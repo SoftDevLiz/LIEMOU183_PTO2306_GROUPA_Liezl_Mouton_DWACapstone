@@ -333,7 +333,7 @@ input[type=submit]:hover {
 }
 
 .loggedIn--header button {
-    background-image: url(/src/assets/user.png);
+    background-image: url(../../src/assets/icons/user.png);
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
@@ -434,7 +434,7 @@ option {
 }
 
 .headerWithBack--back {
-    background-image: url(/src/assets/left-arrows.png);
+    background-image: url(../../src/assets/icons/back-arrows.png);
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
@@ -445,7 +445,7 @@ option {
 }
 
 .headerWithBack--account {
-    background-image: url(/src/assets/user.png);
+    background-image: url(../../src/assets/icons/user.png);
     background-size: cover;
     background-repeat: no-repeat;
     border: none;

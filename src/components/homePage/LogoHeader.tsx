@@ -38,8 +38,8 @@ const Header: React.FC<{}> = () => {
     return (
         <>
             <header className="loggedIn--header">
-                <img src="./src/assets/logodark.png" />
-                <button className="user--account" onClick={toggleModal}></button>
+                <img src="../../src/assets/icons/logodark.png" />
+                <button onClick={toggleModal}></button>
             </header>
             {isOpen && (
                 <div className="user--menu">
