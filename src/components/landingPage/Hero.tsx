@@ -9,7 +9,7 @@ const Hero: React.FC<{}> = () => {
             <div className="hero">
                 <img 
                     className="hero--logo" 
-                    src="https://66633fd0d8028b00a07a1e45--podifyproject.netlify.app/src/assets/Podlogowhite.png"
+                    src="src/assets/Podlogowhite.png"
                     alt="Podify logo"
                 />
                 <h1 className="hero--tagline">Discover, Listen, Connect</h1>
