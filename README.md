@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# Podify: A podcast web app ✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my final project for my software developement course at CodeSpace.
 
-Currently, two official plugins are available:
+Student code: LIEMOU183
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Group code: PTO2306
 
-## Expanding the ESLint configuration
+Netlify URL: https://main--podifyproject.netlify.app/
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Disclaimer ❗
 
-- Configure the top-level `parserOptions` property like this:
+**Podify uses the Supabase Magic Link authentication to sign up/login. You can only submit your email address once a day to use the app as an authenticated user.**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Technology used 💻
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+* Netlify for build + deployment 🌐
+* React framework ⚛️
+* Vite for the dev server 🚀
+* TypeScript because why wouldn't you!? 💙
+* Supabase for the database 👨🏽‍💻
+
+## More info on the project 🎓
+
+This project has tested all of my skills that I have accumulated over the course of a year of learning web dev.
+
+Some of the things that had to be done within this project:
+
+* Using asynchronous logic within components
+* State management
+* Fetching data from a CDN and storing it within a state
+* Setting up a database with Supabase, including policies
+* Pushing and fetching data from the databases
+
+...and lots more. 
+
+Having focused on the invaluable fundamentals of JavaScript and programming as a whole - some, if not most, of these things I've never done before!
+
+If you're reading this...
+
+# I did it. 💫
+
+![alt text](giphy-ezgif.com-webp-to-gif-converter.gif)
