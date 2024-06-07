@@ -1,5 +1,6 @@
 import "../../styles/components.css";
 import Login from "./Login";
+import logoLight from "../../assets/icons/logolight.png"
 
 const Hero: React.FC<{}> = () => {
 
@@ -9,7 +10,7 @@ const Hero: React.FC<{}> = () => {
             <div className="hero">
                 <img 
                     className="hero--logo" 
-                    src="../../src/assets/icons/logolight.png"
+                    src={logoLight}
                     alt="Podify logo"
                 />
                 <h1 className="hero--tagline">Discover, Listen, Connect</h1>

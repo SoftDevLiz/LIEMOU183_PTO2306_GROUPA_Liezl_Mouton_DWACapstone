@@ -267,7 +267,7 @@
 .modal--exit {
     width: 20px;
     height: 20px;
-    background-image: url('/src/assets/close.png');
+    background-image: url('../../src/assets/icons/exit.png');
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
@@ -456,7 +456,7 @@ option {
 }
 
 .share--button {
-    background-image: url(/src/assets/share-icon.png);
+    background-image: url(../../src/assets/icons/share-icon.png);
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
@@ -561,7 +561,7 @@ option {
 }
 
 .play--button {
-    background-image: url(/src/assets/play.png);
+    background-image: url(../../src/assets/icons/play.png);
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
@@ -573,7 +573,7 @@ option {
 }
 
 .play--button:hover {
-    background-image: url(/src/assets/playhover.png);
+    background-image: url(../../src/assets/icons/playhover.png);
 }
 
 .favourite--button {
@@ -659,7 +659,7 @@ option {
 }
 
 .delete--button {
-    background-image: url(/src/assets/trash.png);
+    background-image: url(../../src/assets/icons/delete.png);
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
