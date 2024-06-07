@@ -15,7 +15,7 @@ const Login: React.FC<{}> = () => {
                 email: email,
                 options: {
                     shouldCreateUser: true,
-                    emailRedirectTo: 'https://66636ba8254c8b2ae8c0427b--podifyproject.netlify.app/home',
+                    emailRedirectTo: 'https://main--podifyproject.netlify.app/home',
                   },
             });
 
