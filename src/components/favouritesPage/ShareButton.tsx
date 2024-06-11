@@ -18,7 +18,7 @@ const ShareButton: React.FC<{}> = () => {
     }, []); 
 
     const copyShareableLink = () => {
-        navigator.clipboard.writeText(`http://localhost:5173/favourites/${userId}`).then(() => {
+        navigator.clipboard.writeText(`https://main--podifyproject.netlify.app/favourites/${userId}`).then(() => {
             setShowPopup(true);
             setTimeout(() => {
                 setShowPopup(false);
